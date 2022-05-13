@@ -7,6 +7,7 @@ import { IconContext } from 'react-icons';
 import corpu from './corpu.png';
 
 function Navbar() {
+  //ini navbar
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
