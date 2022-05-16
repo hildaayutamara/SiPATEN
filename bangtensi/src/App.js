@@ -1,26 +1,28 @@
 import React from 'react';
-import './App.css';
 import Navbar from './components/Navbar';
-import Btn_tambah from './components/Btn_tambah';
+import Btn_kompetensi from './components/Btn_kompetensi';
+import Searchbar from './components/Searchbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Diklat from './pages/Diklat';
-import Sertifikat from './pages/Sertifikat';
-import Pengajuan from './pages/Pengajuan';
+import Pengembangan from './Pengembangan';
+import Sertifikat from './Sertifikat';
+import Pengajuan from './Pengajuan';
 
-function App() {
+
+const App = () => {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Btn_tambah />
-        <Routes>
-          <Route path='/' exact component={Diklat} />
-          <Route path='/reports' component={Sertifikat} />
-          <Route path='/products' component={Pengajuan} />
-        </Routes>
-      </Router>
+    <Router>
+    <Navbar />
+    <Btn_kompetensi />
+    <Searchbar />
+      <Routes>
+          <Route path='/' exact component={Pengembangan} />
+          <Route path='/sertifikat' component={Sertifikat} />
+          <Route path='/pengajuan' component={Pengajuan} />
+      </Routes>
+    </Router>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

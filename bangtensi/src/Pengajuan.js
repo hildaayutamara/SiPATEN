@@ -1,11 +1,12 @@
 import React from 'react'
 
-function Pengajuan() {
+const Pengajuan = () => {
   return (
-    <div className='Pengajuan'>
+    <div>
       <h1>Pengajuan</h1>
     </div>
   )
 }
 
 export default Pengajuan
+

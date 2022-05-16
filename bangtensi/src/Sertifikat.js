@@ -1,11 +1,12 @@
 import React from 'react'
 
-function Sertifikat() {
+const Sertifikat = () => {
   return (
-    <div className='Sertifikat'>
+    <div>
       <h1>Sertifikat</h1>
     </div>
   )
 }
 
 export default Sertifikat
+

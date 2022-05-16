@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
-import './Navbar.css';
+import './App.css';
 import { IconContext } from 'react-icons';
 import corpu from './corpu.png';
 
-function Navbar() {
-  //ini navbar
-  const [sidebar, setSidebar] = useState(false);
+const Navbar = () => {
+  const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(!sidebar);
-
   return (
     <>
-      <IconContext.Provider value={{ color: '#fff' }}>
+    <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
@@ -45,7 +43,7 @@ function Navbar() {
         </nav>
       </IconContext.Provider>
     </>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
