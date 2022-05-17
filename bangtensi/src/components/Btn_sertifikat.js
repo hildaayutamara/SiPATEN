@@ -6,13 +6,13 @@ import { FaEye } from "react-icons/fa";
 import AddFormSertifikat from "./AddFormSertifikat";
 import axios from "axios";
 
-import { Viewer, Worker } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+//import { Viewer, Worker } from '@react-pdf-viewer/core';
+//import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+//import '@react-pdf-viewer/core/lib/styles/index.css';
+//import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const defaultLayoutPluginInstance = defaultLayoutPlugin();
+//const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
 const Btn_sertifikat = () => {
 
@@ -33,7 +33,7 @@ const Btn_sertifikat = () => {
     }, []);
     console.log("database>>>>>>>", database);
 
-    const handleLihat=() => {
+    /**const handleLihat=() => {
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.js">
         <div style={{ height: '750px' }}>
             <Viewer
@@ -44,7 +44,7 @@ const Btn_sertifikat = () => {
             />
         </div>
     </Worker>
-    }
+    }*/
 
   return (
     <>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import { IconContext } from 'react-icons';
 import corpu from './corpu.png';
+import man from './man.png';
 
 const Navbar = (item) => {
   
@@ -18,7 +19,8 @@ const Navbar = (item) => {
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <img src={corpu} alt="avatar" className='avatar' />
+          <span className='avatar-text'>Halo, <b>Sahata!</b></span>
+          <img src={man} alt="avatar" className='avatar' />
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
@@ -29,6 +31,7 @@ const Navbar = (item) => {
             </li>
             <div>
             <img src={corpu} alt="Corpu" className='Corpu' />
+            <span className='title-text'><b>SiPATEN</b></span>
             <h2 className='nav-text-corpu'>Corporate University <br></br> Kantor Wilayah Kementerian <br></br> Hukum dan HAM <br></br> Sumatera Utara</h2>
             </div>
             {item.dataNav.map((item, index) => {

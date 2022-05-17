@@ -56,7 +56,7 @@ const AddFormSertifikat = () => {
             handleSubmit();
           }}
         >
-          Buat Pengajuan Kompetensi
+          Tambah Sertifikat Baru
         </Button>
       </Modal.Footer>
   

@@ -36,7 +36,7 @@ const AddForm = () => {
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tanggal :</Form.Label>
-            <Form.Control type="date" placeholder="Masukkan tanggal pelaksanaan kompetensi" name="tanggal" value={tanggal} onChange={(e) => onInputChange(e)} required />
+            <Form.Control type="date" placeholder="Masukkan tanggal mulai pelaksanaan kompetensi" name="tanggal" value={tanggal} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>JP :</Form.Label>
