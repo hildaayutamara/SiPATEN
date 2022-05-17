@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import "./App.css";
 import { BsPlusLg } from "react-icons/bs";
-import AddForm from "./AddForm";
+import AddFormPengajuan from "./AddFormPengajuan";
 import axios from "axios";
 
-const Btn_kompetensi = () => {
-
+const Btn_pengajuan = () => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
@@ -14,7 +13,7 @@ const Btn_kompetensi = () => {
     const [database, setdatabase] = useState([]);
     const getdata = async () => {
       await axios
-        .get(`http://localhost:3200/data_kompetensi`)
+        .get(`http://localhost:3200/data_pengajuan`)
         .then((result) => setdatabase(result.data))
         .catch((err) => console.log(err));
     };
@@ -24,13 +23,12 @@ const Btn_kompetensi = () => {
     }, []);
     console.log("database>>>>>>>", database);
 
-
   return (
     <>
-    <div className="btn-kompetensi">
+      <div className="btn-pengajuan">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
           <BsPlusLg />
-          <span>Tambah Kompetensi</span>
+          <span>Tambah Pengajuan</span>
         </Button>
       </div>
 
@@ -38,20 +36,20 @@ const Btn_kompetensi = () => {
         <thead>
           <tr>
             <th>No.</th>
-            <th>Nama Kompetensi</th>
-            <th>Tanggal</th>
-            <th>JP</th>
+            <th>Jenis Kompetensi</th>
             <th>Penyelenggara</th>
+            <th>Tujuan Kompetensi</th>
+            <th>Tanggal Pengajuan</th>
           </tr>
         </thead>
         <tbody>
           {database?.map((item, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{item?.kompetensi}</td>
-              <td>{item?.tanggal}</td>
-              <td>{item?.jp}</td>
+              <td>{item?.jenis}</td>
               <td>{item?.penyelenggara}</td>
+              <td>{item?.tujuan}</td>
+              <td>{item?.tanggal}</td>
             </tr>
           ))}
         </tbody>
@@ -59,14 +57,12 @@ const Btn_kompetensi = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Tambah Kompetensi</Modal.Title>
+          <Modal.Title>Pengajuan Kompetensi</Modal.Title>
         </Modal.Header>
-        <AddForm />
+        <AddFormPengajuan />
       </Modal>
     </>
   )
 }
 
-export default Btn_kompetensi
-
-
+export default Btn_pengajuan

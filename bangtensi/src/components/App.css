@@ -52,6 +52,8 @@
 
 .nav-text a:hover {
   background-color: #E1E0E0;
+  border-right: #E50100 5px solid;
+  border-radius: 0%;
   font-weight: bold;
   width: 100%;
 }
@@ -81,6 +83,11 @@ span {
   height: 60%;
 }
 
+.avatar {
+  width: 70px;
+  height: 70px;
+}
+
 .nav-text-corpu {
   text-align: center;
   margin-top: 1rem;
@@ -89,6 +96,14 @@ span {
 }
 
 .btn-kompetensi {
+  margin-left: 72rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.btn-pengajuan {
+  width: fit-content;
+  height: fit-content;
   margin-left: 72rem;
   margin-top: 1rem;
   align-items: center;

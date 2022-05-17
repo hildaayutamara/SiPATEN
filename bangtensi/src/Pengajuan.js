@@ -1,10 +1,19 @@
-import React from 'react'
+import React from 'react';
+import Navbar from "./components/Navbar";
+import Btn_pengajuan from './components/Btn_pengajuan';
+import Searchbar from "./components/Searchbar";
+import { SidebarData } from "./components/SidebarData";
 
 const Pengajuan = () => {
+  
+  const item = SidebarData;
+
   return (
-    <div>
-      <h1>Pengajuan</h1>
-    </div>
+    <>
+    <Navbar dataNav={item} />
+    <Btn_pengajuan />
+    <Searchbar />
+    </>
   )
 }
 

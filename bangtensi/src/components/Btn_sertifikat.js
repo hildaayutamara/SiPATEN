@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import "./App.css";
 import { BsPlusLg } from "react-icons/bs";
-import AddForm from "./AddForm";
+import AddFormSertifikat from "./AddFormSertifikat";
 import axios from "axios";
 
-const Btn_kompetensi = () => {
+const Btn_sertifikat = () => {
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -14,7 +14,7 @@ const Btn_kompetensi = () => {
     const [database, setdatabase] = useState([]);
     const getdata = async () => {
       await axios
-        .get(`http://localhost:3200/data_kompetensi`)
+        .get(`http://localhost:3200/data_sertifikat`)
         .then((result) => setdatabase(result.data))
         .catch((err) => console.log(err));
     };
@@ -24,13 +24,12 @@ const Btn_kompetensi = () => {
     }, []);
     console.log("database>>>>>>>", database);
 
-
   return (
     <>
-    <div className="btn-kompetensi">
+      <div className="btn-kompetensi">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
           <BsPlusLg />
-          <span>Tambah Kompetensi</span>
+          <span>Tambah Sertifikat</span>
         </Button>
       </div>
 
@@ -38,20 +37,20 @@ const Btn_kompetensi = () => {
         <thead>
           <tr>
             <th>No.</th>
-            <th>Nama Kompetensi</th>
-            <th>Tanggal</th>
-            <th>JP</th>
-            <th>Penyelenggara</th>
+            <th>No. Sertifikat</th>
+            <th>Nama Sertifikat</th>
+            <th>Update</th>
+            <th>Lihat</th>
           </tr>
         </thead>
         <tbody>
           {database?.map((item, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{item?.kompetensi}</td>
-              <td>{item?.tanggal}</td>
-              <td>{item?.jp}</td>
-              <td>{item?.penyelenggara}</td>
+              <td>{item?.nomor}</td>
+              <td>{item?.nama}</td>
+              <td>{item?.update}</td>
+              <td>{item?.lihat}</td>
             </tr>
           ))}
         </tbody>
@@ -59,14 +58,13 @@ const Btn_kompetensi = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Tambah Kompetensi</Modal.Title>
+          <Modal.Title>Tambah Sertifikat Baru</Modal.Title>
         </Modal.Header>
-        <AddForm />
+        <AddFormSertifikat />
       </Modal>
     </>
   )
 }
 
-export default Btn_kompetensi
-
+export default Btn_sertifikat
 
