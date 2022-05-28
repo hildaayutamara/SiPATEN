@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 //import { SidebarData } from './SidebarData';
 import './App.css';
 import { IconContext } from 'react-icons';
-import corpu from './corpu.png';
+import corpu1 from './corpu1.png';
 import man from './man.png';
 
 const Navbar = (item) => {
@@ -30,8 +30,7 @@ const Navbar = (item) => {
               </Link>
             </li>
             <div>
-            <img src={corpu} alt="Corpu" className='Corpu' />
-            <span className='title-text'><b>SiPATEN</b></span>
+            <img src={corpu1} alt="Corpu" className='Corpu' />
             <h2 className='nav-text-corpu'>Corporate University <br></br> Kantor Wilayah Kementerian <br></br> Hukum dan HAM <br></br> Sumatera Utara</h2>
             </div>
             {item.dataNav.map((item, index) => {

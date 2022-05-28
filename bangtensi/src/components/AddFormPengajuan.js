@@ -8,17 +8,24 @@ import "./App.css";
 const AddFormPengajuan = () => {
     const [Pengajuan, setPengajuan] = useState({
         id: uuidv4(),
-        jenis: "",
+        nama: "",
         penyelenggara: "",
-        tujuan: "",
-        tanggal: "",
+        jp: "",
+        narasumber: "",
+        tempat: "",
+        tgl_mulai: "",
+        tgl_selesai: "",
+        nota: "",
+        peserta: "",
+        materi: "",
+        status: "",
       });
     
       const onInputChange = (e) => {
         setPengajuan({ ...Pengajuan, [e.target.name]: e.target.value });
       };
     
-      const { id, jenis, penyelenggara, tujuan, tanggal } = Pengajuan;
+      const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pengajuan;
       const handleSubmit = async () => {
         await axios.post(`http://localhost:3200/data_pengajuan`, Pengajuan);
         alert("Sukses!");
@@ -29,26 +36,45 @@ const AddFormPengajuan = () => {
     <>
       <Modal.Body>
         <Form>
-          <Form.Group>
-            <Form.Label>Jenis Kompetensi :</Form.Label>
-            <Form.Select aria-label="Masukkan jenis kompetensi" name="jenis" value={jenis} onChange={(e) => onInputChange(e)} required>
-              <option value="Diklat Kepemimpinan">Diklat Kepemimpinan</option>
-              <option value="Diklat Kepegewaian">Diklat Kepegawaian</option>
-              <option value="Diklat Keuangan">Diklat Keuangan</option>
-              <option value="FGD">FGD</option>
-            </Form.Select>
+          <Form.Group className="form">
+            <Form.Label>Nama Kompetensi :</Form.Label>
+            <Form.Control type="text" placeholder="Masukkan nama kompetensi" name="nama" value={nama} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Penyelenggara :</Form.Label>
             <Form.Control type="text" placeholder="Masukkan nama penyelenggara" name="penyelenggara" value={penyelenggara} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
           <Form.Group className="form">
-            <Form.Label>Tujuan Kompetensi :</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan tujuan pengajuan kompetensi" name="tujuan" value={tujuan} onChange={(e) => onInputChange(e)} />
+            <Form.Label>JP :</Form.Label>
+            <Form.Control type="number" placeholder="Masukkan jumlah JP" name="jp" value={jp} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
-            <Form.Label>Tanggal Pengajuan :</Form.Label>
-            <Form.Control type="date" placeholder="Masukkan tanggal pengajuan kompetensi" name="tanggal" value={tanggal} onChange={(e) => onInputChange(e)} />
+            <Form.Label>Narasumber :</Form.Label>
+            <Form.Control type="text" placeholder="Masukkan nama narasumber" name="narasumber" value={narasumber} onChange={(e) => onInputChange(e)} required />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Tempat :</Form.Label>
+            <Form.Control type="text" placeholder="Masukkan tempat pelaksanaan kompetensi" name="tempat" value={tempat} onChange={(e) => onInputChange(e)} required />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Tanggal Mulai :</Form.Label>
+            <Form.Control type="date" placeholder="Masukkan tanggal mulai kompetensi" name="tgl_mulai" value={tgl_mulai} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Tanggal Selesai :</Form.Label>
+            <Form.Control type="date" placeholder="Masukkan tanggal selesai kompetensi" name="tgl_selesai" value={tgl_selesai} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Nota Kegiatan :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file nota kegiatan" name="nota" value={nota} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Peserta :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={peserta} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Materi :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={materi} onChange={(e) => onInputChange(e)} />
           </Form.Group>
         </Form>
       </Modal.Body>

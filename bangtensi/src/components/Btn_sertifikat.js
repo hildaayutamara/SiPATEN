@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import "./App.css";
-import { BsPlusLg } from "react-icons/bs";
+import { IoIosCreate } from "react-icons/io";
 import { FaEye } from "react-icons/fa";
 import AddFormSertifikat from "./AddFormSertifikat";
 import axios from "axios";
@@ -48,10 +48,10 @@ const Btn_sertifikat = () => {
 
   return (
     <>
-      <div className="btn-kompetensi">
+      <div className="btn-sertifikat">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
-          <BsPlusLg />
-          <span>Tambah Sertifikat</span>
+          <IoIosCreate className="icon" />
+          <span>Buat Sertifikat</span>
         </Button>
       </div>
 
@@ -59,25 +59,27 @@ const Btn_sertifikat = () => {
         <thead>
           <tr>
             <th>No.</th>
-            <th>No. Sertifikat</th>
-            <th>Nama Sertifikat</th>
-            <th>Update</th>
-            <th>Lihat</th>
+            <th>Nama Kompetensi</th>
+            <th>Penyelenggara</th>
+            <th>JP</th>
+            <th>Nota Kegiatan</th>
+            <th>Status</th>
+            <th>Sertifikat</th>
           </tr>
         </thead>
         <tbody>
           {database?.map((item, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{item?.nomor}</td>
               <td>{item?.nama}</td>
-              <td>{item?.update}</td>
+              <td>{item?.penyelenggara}</td>
+              <td>{item?.jp}</td>
               <td>
-                    <Button variant="success">
-                      <span className="me-2">Lihat Dokumen</span>
-                      <FaEye />
-                    </Button>
-                </td>
+                  <Button variant="success">
+                    <span className="lihat">Lihat</span>
+                    <FaEye />
+                  </Button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -85,7 +87,7 @@ const Btn_sertifikat = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Tambah Sertifikat Baru</Modal.Title>
+          <Modal.Title>Buat Sertifikat Baru</Modal.Title>
         </Modal.Header>
         <AddFormSertifikat />
       </Modal>

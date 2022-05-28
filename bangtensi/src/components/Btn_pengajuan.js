@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
 import "./App.css";
-import { BsPlusLg } from "react-icons/bs";
+import { IoIosCreate } from "react-icons/io";
+import { FaEye } from "react-icons/fa";
 import AddFormPengajuan from "./AddFormPengajuan";
 import axios from "axios";
 
@@ -27,8 +28,8 @@ const Btn_pengajuan = () => {
     <>
       <div className="btn-pengajuan">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
-          <BsPlusLg />
-          <span>Tambah Pengajuan</span>
+          <IoIosCreate className="icon" />
+          <span>Buat Pengajuan</span>
         </Button>
       </div>
 
@@ -36,20 +37,26 @@ const Btn_pengajuan = () => {
         <thead>
           <tr>
             <th>No.</th>
-            <th>Jenis Kompetensi</th>
+            <th>Nama Kompetensi</th>
             <th>Penyelenggara</th>
-            <th>Tujuan Kompetensi</th>
-            <th>Tanggal Pengajuan</th>
+            <th>JP</th>
+            <th>Nota Kegiatan</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {database?.map((item, index) => (
             <tr>
               <th scope="row">{index + 1}</th>
-              <td>{item?.jenis}</td>
+              <td>{item?.nama}</td>
               <td>{item?.penyelenggara}</td>
-              <td>{item?.tujuan}</td>
-              <td>{item?.tanggal}</td>
+              <td>{item?.jp}</td>
+              <td>
+                  <Button variant="success">
+                    <span className="lihat">Lihat</span>
+                    <FaEye />
+                  </Button>
+              </td>
             </tr>
           ))}
         </tbody>
