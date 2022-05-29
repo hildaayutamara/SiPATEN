@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
-import Btn_kompetensi from "./components/Btn_kompetensi";
-import { AiOutlineSearch } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
+import BtnKompetensi from "./components/BtnKompetensi";
+import "./components/Searchbar.css";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { SidebarData } from "./components/SidebarData";
-import { MdModeEdit, MdDelete } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
+import BtnEdit from "./components/BtnEdit";
 
 const Pengembangan = () => {
   const [database, setdatabase] = useState([]);
@@ -17,7 +18,12 @@ const Pengembangan = () => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = database.filter((value) => {
-      return value.nama.toLowerCase().includes(searchWord.toLowerCase()) || value.kompetensi.toLowerCase().includes(searchWord.toLowerCase());
+      return (
+        value.nama.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.nip.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.kompetensi.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.penyelenggara.toLowerCase().includes(searchWord.toLowerCase())
+      );
     });
 
     if (searchWord === "") {
@@ -66,7 +72,7 @@ const Pengembangan = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <Btn_kompetensi />
+      <BtnKompetensi />
       <Table striped className="table">
         <thead>
           <tr>
@@ -97,9 +103,7 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <Button variant="warning">
-                      <MdModeEdit />
-                    </Button>
+                    <BtnEdit />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -122,9 +126,7 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <Button variant="warning">
-                      <MdModeEdit />
-                    </Button>
+                    <BtnEdit />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />

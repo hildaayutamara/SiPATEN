@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./App.css";
 import { BsPlusLg } from "react-icons/bs";
 import AddForm from "./AddForm";
 
-const Btn_kompetensi = () => {
+const BtnKompetensi = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -28,4 +28,4 @@ const Btn_kompetensi = () => {
   );
 };
 
-export default Btn_kompetensi;
+export default BtnKompetensi;
