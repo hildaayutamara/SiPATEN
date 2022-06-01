@@ -7,7 +7,10 @@ import AddFormPengajuan from "./AddFormPengajuan";
 const BtnPengajuan = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleClose = async () => {
+    setShow(false);
+    window.location.replace("/pengajuan");
+  };
 
   return (
     <>

@@ -53,7 +53,9 @@ const EditForm = ({ id }) => {
         imageWidth: 100,
         imageHeight: 100,
         width: 450,
-        title: "Your data Has Been Updated",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "#3BB54A",
+        title: "Berhasil di Update",
       });
     } catch (error) {
       if (error.response.status === 400) {

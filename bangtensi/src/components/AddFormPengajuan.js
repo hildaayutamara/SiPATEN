@@ -4,33 +4,43 @@ import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./App.css";
+import Swal from "sweetalert2";
+import Success from "./check.png";
 
 const AddFormPengajuan = () => {
-    const [Pengajuan, setPengajuan] = useState({
-        id: uuidv4(),
-        nama: "",
-        penyelenggara: "",
-        jp: "",
-        narasumber: "",
-        tempat: "",
-        tgl_mulai: "",
-        tgl_selesai: "",
-        nota: "",
-        peserta: "",
-        materi: "",
-        status: "",
-      });
-    
-      const onInputChange = (e) => {
-        setPengajuan({ ...Pengajuan, [e.target.name]: e.target.value });
-      };
-    
-      const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pengajuan;
-      const handleSubmit = async () => {
-        await axios.post(`http://localhost:3200/data_pengajuan`, Pengajuan);
-        alert("Sukses!");
-      };
-      console.log("data", Pengajuan);
+  const [Pengajuan, setPengajuan] = useState({
+    id: uuidv4(),
+    nama: "",
+    penyelenggara: "",
+    jp: "",
+    narasumber: "",
+    tempat: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
+    nota: "",
+    peserta: "",
+    materi: "",
+    status: "",
+  });
+
+  const onInputChange = (e) => {
+    setPengajuan({ ...Pengajuan, [e.target.name]: e.target.value });
+  };
+
+  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pengajuan;
+  const handleSubmit = async () => {
+    await axios.post(`http://localhost:3200/data_pengajuan`, Pengajuan);
+    Swal.fire({
+      imageUrl: `${Success}`,
+      imageWidth: 100,
+      imageHeight: 100,
+      width: 450,
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#3BB54A",
+      title: "Berhasil di Input",
+    });
+  };
+  console.log("data", Pengajuan);
 
   return (
     <>
@@ -90,9 +100,8 @@ const AddFormPengajuan = () => {
           Buat Pengajuan Kompetensi
         </Button>
       </Modal.Footer>
-  
     </>
-  )
-}
+  );
+};
 
-export default AddFormPengajuan
+export default AddFormPengajuan;

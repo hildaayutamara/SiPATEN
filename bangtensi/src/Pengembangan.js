@@ -10,7 +10,7 @@ import { FaEye } from "react-icons/fa";
 import axios from "axios";
 import BtnEdit from "./components/BtnEdit";
 
-const Pengembangan = () => {
+const Pengembangan = ({ hapusData }) => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -44,6 +44,26 @@ const Pengembangan = () => {
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
+
+  /* const onDelete = async (id) => {
+    await fetch(`http://localhost:3200/data_kompetensi${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          return;
+        } else {
+          setdatabase(
+            database.filter((database) => {
+              return database.id !== id;
+            })
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };*/
 
   const item = SidebarData;
 

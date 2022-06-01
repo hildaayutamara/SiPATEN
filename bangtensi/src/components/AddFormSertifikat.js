@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./App.css";
+import Swal from "sweetalert2";
+import Success from "./check.png";
 
-const AddFormSertifikat = () => {
+const AddFormSertifikat = (statuss) => {
   const [Sertifikat, setSertifikat] = useState({
     id: uuidv4(),
     nama: "",
@@ -23,6 +25,10 @@ const AddFormSertifikat = () => {
     file: "",
   });
 
+  useEffect(() => {
+    setSertifikat({ ...Sertifikat, status: statuss.status });
+  }, []);
+
   const onInputChange = (e) => {
     setSertifikat({ ...Sertifikat, [e.target.name]: e.target.value });
   };
@@ -30,8 +36,15 @@ const AddFormSertifikat = () => {
   const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, absen, materi, dokumentasi, status, file } = Sertifikat;
   const handleSubmit = async () => {
     await axios.post(`http://localhost:3200/data_sertifikat`, Sertifikat);
-
-    alert("Sukses!");
+    Swal.fire({
+      imageUrl: `${Success}`,
+      imageWidth: 100,
+      imageHeight: 100,
+      width: 450,
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#3BB54A",
+      title: "Berhasil di Input",
+    });
   };
   console.log("data", Sertifikat);
 
@@ -85,7 +98,7 @@ const AddFormSertifikat = () => {
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Status :</Form.Label>
-            <Form.Control type="text" defaultValue="Diproses" name="status" value={status} onChange={(e) => onInputChange(e)} />
+            <Form.Control type="text" name="status" value={status} />
           </Form.Group>
         </Form>
       </Modal.Body>

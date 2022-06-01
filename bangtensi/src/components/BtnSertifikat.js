@@ -14,8 +14,12 @@ import AddFormSertifikat from "./AddFormSertifikat";
 
 const BtnSertifikat = () => {
   const [show, setShow] = useState(false);
+  const status = "Diproses";
   const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleClose = async () => {
+    setShow(false);
+    window.location.replace("/sertifikat");
+  };
 
   /**const handleLihat=() => {
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.js">
@@ -43,7 +47,7 @@ const BtnSertifikat = () => {
         <Modal.Header closeButton>
           <Modal.Title>Buat Sertifikat Baru</Modal.Title>
         </Modal.Header>
-        <AddFormSertifikat />
+        <AddFormSertifikat status={status} />
       </Modal>
     </>
   );

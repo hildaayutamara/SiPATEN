@@ -4,38 +4,47 @@ import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./App.css";
-
+import Swal from "sweetalert2";
+import Success from "./check.png";
 
 const AddForm = () => {
-    const [Kompetensi, setKompetensi] = useState({
-        id: uuidv4(),
-        nama: "",
-        nip: "",
-        kompetensi: "",
-        tgl_mulai: "",
-        tgl_selesai: "",
-        jp: "",
-        sebagai: "",
-        penyelenggara: "",
-        narasumber: "",
-        tempat: "",
-        sertifikat: "",
-      });
-    
-      const onInputChange = (e) => {
-        setKompetensi({ ...Kompetensi, [e.target.name]: e.target.value });
-      };
-    
-      const { id, nama, nip, kompetensi, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Kompetensi;
-      const handleSubmit = async () => {
-        await axios.post(`http://localhost:3200/data_kompetensi`, Kompetensi);
-        alert("Sukses!");
-      };
-      console.log("data", Kompetensi);
+  const [Kompetensi, setKompetensi] = useState({
+    id: uuidv4(),
+    nama: "",
+    nip: "",
+    kompetensi: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
+    jp: "",
+    sebagai: "",
+    penyelenggara: "",
+    narasumber: "",
+    tempat: "",
+    sertifikat: "",
+  });
+
+  const onInputChange = (e) => {
+    setKompetensi({ ...Kompetensi, [e.target.name]: e.target.value });
+  };
+
+  const { id, nama, nip, kompetensi, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Kompetensi;
+  const handleSubmit = async () => {
+    await axios.post(`http://localhost:3200/data_kompetensi`, Kompetensi);
+    Swal.fire({
+      imageUrl: `${Success}`,
+      imageWidth: 100,
+      imageHeight: 100,
+      width: 450,
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#3BB54A",
+      title: "Berhasil di Input",
+    });
+  };
+  console.log("data", Kompetensi);
 
   return (
     <>
-        <Modal.Body>
+      <Modal.Body>
         <Form>
           <Form.Group>
             <Form.Label>Nama Pegawai :</Form.Label>
@@ -98,9 +107,8 @@ const AddForm = () => {
           Tambah Kompetensi Baru
         </Button>
       </Modal.Footer>
-  
     </>
-  )
-}
+  );
+};
 
-export default AddForm
+export default AddForm;
