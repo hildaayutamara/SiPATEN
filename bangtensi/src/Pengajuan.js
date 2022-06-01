@@ -91,6 +91,7 @@ const Pengajuan = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td></td>
                 </tr>
               ))
             : database?.map((item, index) => (
@@ -105,6 +106,7 @@ const Pengajuan = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td></td>
                 </tr>
               ))}
         </tbody>

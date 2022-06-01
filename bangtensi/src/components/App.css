@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #E50100;
+  background-color: #e50100;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -13,7 +13,7 @@
 }
 
 .nav-menu {
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   width: 300px;
   height: 100vh;
   display: flex;
@@ -51,8 +51,8 @@
 }
 
 .nav-text a:hover {
-  background-color: #E1E0E0;
-  border-right: #E50100 5px solid;
+  background-color: #e1e0e0;
+  border-right: #e50100 5px solid;
   border-radius: 0%;
   font-weight: bold;
   width: 100%;
@@ -93,7 +93,7 @@ span {
   margin-left: 68rem;
   margin-top: 0px;
   font-size: 18px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .title-text {
@@ -132,7 +132,7 @@ span {
   align-items: center;
 }
 
-.search-box{
+.search-box {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -145,7 +145,7 @@ span {
   left: 21rem;
   top: 100px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06), 0px 0px 0px 1px rgba(104, 113, 130, 0.16);
   border-radius: 6px;
 }
@@ -179,3 +179,68 @@ span {
   margin-bottom: 2px;
 }
 
+.background-image {
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+
+.parent {
+  display: grid;
+  place-items: center;
+}
+
+.button-custom {
+  background-color: #e50100;
+  width: 240px;
+  height: 50px;
+  border-radius: 35px;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 30px;
+}
+
+.logo {
+  align-items: center;
+  margin-left: 15px;
+  width: 20%;
+  height: 20%;
+}
+
+.kumham {
+  margin-top: 4px;
+  margin-left: 61rem;
+  width: 80px;
+}
+
+.avatar1 {
+  width: 120px;
+  height: 120px;
+  margin-top: -2rem;
+}
+
+.login-text {
+  color: #ffffff;
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+.login-text1 {
+  color: #ffffff;
+  font-size: 18px;
+}
+.welcome-text {
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.login-form {
+  color: #ffffff;
+  border: none;
+  border-bottom: 2px solid red;
+  margin-bottom: 3px;
+}

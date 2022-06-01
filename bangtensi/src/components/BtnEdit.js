@@ -4,10 +4,18 @@ import "./App.css";
 import { MdModeEdit } from "react-icons/md";
 import EditForm from "./EditForm";
 
-const BtnEdit = () => {
+const BtnEdit = ({ idData }) => {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+    setid(idData);
+  };
+  const handleClose = async () => {
+    setShow(false);
+    window.location.replace("/pengembangan");
+  };
+  const [id, setid] = useState();
+  console.log("ID BTN", idData);
 
   return (
     <>
@@ -19,7 +27,7 @@ const BtnEdit = () => {
         <Modal.Header closeButton>
           <Modal.Title>Edit Kompetensi</Modal.Title>
         </Modal.Header>
-        <EditForm />
+        <EditForm id={id} />
       </Modal>
     </>
   );

@@ -6,40 +6,41 @@ import axios from "axios";
 import "./App.css";
 
 const AddFormSertifikat = () => {
-    const [Sertifikat, setSertifikat] = useState({
-        id: uuidv4(),
-        nama: "",
-        penyelenggara: "",
-        jp: "",
-        narasumber: "",
-        tempat: "",
-        tgl_mulai: "",
-        tgl_selesai: "",
-        nota: "",
-        absen: "",
-        materi: "",
-        dokumentasi: "",
-        status: "",
-        file: "",
-      });
-    
-      const onInputChange = (e) => {
-        setSertifikat({ ...Sertifikat, [e.target.name]: e.target.value });
-      };
-    
-      const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, absen, materi, dokumentasi, status, file} = Sertifikat;
-      const handleSubmit = async () => {
-        await axios.post(`http://localhost:3200/data_sertifikat`, Sertifikat);
-        alert("Sukses!");
-      };
-      console.log("data", Sertifikat);
+  const [Sertifikat, setSertifikat] = useState({
+    id: uuidv4(),
+    nama: "",
+    penyelenggara: "",
+    jp: "",
+    narasumber: "",
+    tempat: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
+    nota: "",
+    absen: "",
+    materi: "",
+    dokumentasi: "",
+    status: "",
+    file: "",
+  });
+
+  const onInputChange = (e) => {
+    setSertifikat({ ...Sertifikat, [e.target.name]: e.target.value });
+  };
+
+  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, absen, materi, dokumentasi, status, file } = Sertifikat;
+  const handleSubmit = async () => {
+    await axios.post(`http://localhost:3200/data_sertifikat`, Sertifikat);
+
+    alert("Sukses!");
+  };
+  console.log("data", Sertifikat);
 
   return (
     <>
       <Modal.Body>
         <Form>
           <Form.Group>
-          <Form.Label>Nama Kompetensi :</Form.Label>
+            <Form.Label>Nama Kompetensi :</Form.Label>
             <Form.Control type="text" placeholder="Masukkan nama kompetensi" name="nama" value={nama} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
           <Form.Group className="form">
@@ -82,6 +83,10 @@ const AddFormSertifikat = () => {
             <Form.Label>Dokumentasi :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file dokumentasi kegiatan kompetensi" name="dokumentasi" value={dokumentasi} onChange={(e) => onInputChange(e)} />
           </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Status :</Form.Label>
+            <Form.Control type="text" defaultValue="Diproses" name="status" value={status} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -96,9 +101,8 @@ const AddFormSertifikat = () => {
           Buat Sertifikat Baru
         </Button>
       </Modal.Footer>
-  
     </>
-  )
-}
+  );
+};
 
-export default AddFormSertifikat
+export default AddFormSertifikat;

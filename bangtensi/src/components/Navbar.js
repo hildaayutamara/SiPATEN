@@ -1,37 +1,40 @@
-import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import * as FaIcons from "react-icons/fa";
+import { Link } from "react-router-dom";
 //import { SidebarData } from './SidebarData';
-import './App.css';
-import { IconContext } from 'react-icons';
-import corpu1 from './corpu1.png';
-import man from './man.png';
+import "./App.css";
+import { IconContext } from "react-icons";
+import corpu1 from "./corpu1.png";
+import man from "./man.png";
 
 const Navbar = (item) => {
-  
   const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <>
-    <IconContext.Provider value={{ color: '#fff' }}>
-        <div className='navbar'>
-          <Link to='#' className='menu-bars'>
+      <IconContext.Provider value={{ color: "#fff" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <span className='avatar-text'>Halo, <b>Sahata!</b></span>
-          <img src={man} alt="avatar" className='avatar' />
+          <span className="avatar-text">
+            Halo, <b>Sahata!</b>
+          </span>
+          <img src={man} alt="avatar" className="avatar" />
         </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-          <ul className='nav-menu-items' onClick={showSidebar}>
-            <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
+        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" className="menu-bars">
                 <FaIcons.FaBars />
               </Link>
             </li>
             <div>
-            <img src={corpu1} alt="Corpu" className='Corpu' />
-            <h2 className='nav-text-corpu'>Corporate University <br></br> Kantor Wilayah Kementerian <br></br> Hukum dan HAM <br></br> Sumatera Utara</h2>
+              <img src={corpu1} alt="Corpu" className="Corpu" />
+              <h2 className="nav-text-corpu">
+                Corporate University <br></br> Kantor Wilayah Kementerian <br></br> Hukum dan HAM <br></br> Sumatera Utara
+              </h2>
             </div>
             {item.dataNav.map((item, index) => {
               return (
@@ -47,7 +50,7 @@ const Navbar = (item) => {
         </nav>
       </IconContext.Provider>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

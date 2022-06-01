@@ -92,6 +92,7 @@ const Sertifikat = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>{item?.status}</td>
                 </tr>
               ))
             : database?.map((item, index) => (
@@ -106,6 +107,8 @@ const Sertifikat = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>{item?.status}</td>
+                  <td></td>
                 </tr>
               ))}
         </tbody>
