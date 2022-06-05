@@ -5,11 +5,11 @@ import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import BtnEditPencatatan from "../components/BtnEditPencatatan";
 import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
 import BtnDetailPencatatan from "../components/BtnDetailPencatatan";
+import BtnDeletePencatatan from "../components/BtnDeletePencatatan";
 
 const PencatatanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
@@ -119,9 +119,7 @@ const PencatatanSuperAdmin = () => {
                   <td>
                     <BtnEditPencatatan idData={item?.id} />
 
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
+                    <BtnDeletePencatatan idData={item?.id} />
                   </td>
                 </tr>
               ))
@@ -145,9 +143,7 @@ const PencatatanSuperAdmin = () => {
                   <td>
                     <BtnEditPencatatan idData={item?.id} />
 
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
+                    <BtnDeletePencatatan idData={item?.id} />
                   </td>
                 </tr>
               ))}
