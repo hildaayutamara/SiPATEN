@@ -7,14 +7,14 @@
 }
 
 .menu-bars {
-  margin-left: 2rem;
+  margin-left: 20px;
   font-size: 2rem;
   background: none;
 }
 
 .nav-menu {
   background-color: #f4f4f4;
-  width: 300px;
+  width: 250px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -22,6 +22,11 @@
   top: 0;
   left: -100%;
   transition: 850ms;
+  z-index: 10;
+}
+
+.wrap {
+  width: 100%;
 }
 
 .nav-menu.active {
@@ -33,9 +38,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 16px 0px 0px 16px;
+  padding: 5px 0px 0px 5px;
   list-style: none;
-  height: 60px;
+  height: 55px;
+  margin-top: 2px;
 }
 
 .nav-text a {
@@ -63,7 +69,7 @@
 }
 
 .navbar-toggle {
-  margin-left: 17rem;
+  margin-left: 13.7rem;
   background-color: none;
   align-items: center;
   width: 50%;
@@ -75,11 +81,12 @@ span {
   margin-left: 14px;
 }
 
-.Corpu {
+.corpu {
   align-items: center;
-  margin-top: -55px;
-  width: 80%;
-  height: 80%;
+  margin-top: -65px;
+  margin-left: 6px;
+  width: 70%;
+  height: 70%;
 }
 
 .avatar {
@@ -90,7 +97,7 @@ span {
 }
 
 .avatar-text {
-  margin-left: 68rem;
+  margin-left: 69rem;
   margin-top: 0px;
   font-size: 18px;
   color: #ffffff;
@@ -104,26 +111,31 @@ span {
 
 .nav-text-corpu {
   text-align: center;
-  margin-top: 5px;
   margin-right: 55px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
-.btn-kompetensi {
+.btn-pencatatan {
   margin-top: -30px;
   margin-left: 71.5rem;
   align-items: center;
 }
 
-.btn-sertifikat {
+.btn-hasil {
   margin-top: -30px;
-  margin-left: 74.5rem;
+  margin-left: 74rem;
   align-items: center;
 }
 
-.btn-pengajuan {
+.btn-pelaksanaan {
   margin-top: -30px;
-  margin-left: 74rem;
+  margin-left: 72rem;
+  align-items: center;
+}
+
+.btn-usulan {
+  margin-top: -30px;
+  margin-left: 73.5rem;
   align-items: center;
 }
 
@@ -163,9 +175,20 @@ span {
 
 .table {
   justify-content: center;
-  margin-left: 20rem;
-  margin-top: 2rem;
-  width: 1025px;
+  margin-left: 17rem;
+  margin-top: 1.5rem;
+  width: 1065px;
+}
+
+.table-tbody {
+  overflow: scroll;
+  display: table-row;
+  width: 1050px;
+  height: 500px;
+}
+
+.table-thead {
+  display: block;
 }
 
 .lihat {
@@ -194,12 +217,24 @@ span {
 
 .button-custom {
   background-color: #e50100;
+  border: none;
   width: 240px;
   height: 50px;
   border-radius: 35px;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: normal;
-  margin-top: 30px;
+  margin-top: -10px;
+}
+
+.button-text {
+  color: #ffffff;
+  font-weight: normal;
+}
+
+.button-text:hover {
+  background: none;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .logo {
@@ -238,9 +273,49 @@ span {
   margin-top: 10px;
 }
 
-.login-form {
+.login {
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  padding: 30px;
+  padding-top: 10px;
+  margin-top: -20px;
+}
+
+.login-field {
+  padding: 20px 0px;
+  position: relative;
+}
+
+.login-icon {
+  position: absolute;
+  top: 30px;
   color: #ffffff;
+  font-size: 150%;
+}
+
+.login-input {
   border: none;
-  border-bottom: 2px solid red;
-  margin-bottom: 3px;
+  border-bottom: 2px solid #e50100;
+  background: none;
+  padding: 10px;
+  padding-left: 40px;
+  font-weight: normal;
+  color: #ffffff;
+  width: 75%;
+  transition: 0.2s;
+}
+
+.login-input:active,
+.login-input:focus,
+.login-input:hover {
+  outline: none;
+  border-bottom-color: #ffffff;
+}
+
+input::placeholder {
+  color: #8d8d8d;
+  opacity: 1;
 }

@@ -3,16 +3,17 @@ import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "./App.css";
+import "../css/App.css";
 import Swal from "sweetalert2";
-import Success from "./check.png";
+import Success from "../img/check.png";
 
-const AddForm = () => {
-  const [Kompetensi, setKompetensi] = useState({
+const AddFormPencatatan = () => {
+  const [Pencatatan, setPencatatan] = useState({
     id: uuidv4(),
     nama: "",
     nip: "",
     kompetensi: "",
+    kategori: "",
     tgl_mulai: "",
     tgl_selesai: "",
     jp: "",
@@ -24,12 +25,12 @@ const AddForm = () => {
   });
 
   const onInputChange = (e) => {
-    setKompetensi({ ...Kompetensi, [e.target.name]: e.target.value });
+    setPencatatan({ ...Pencatatan, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, nip, kompetensi, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Kompetensi;
+  const { id, nama, nip, kompetensi, kategori, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Pencatatan;
   const handleSubmit = async () => {
-    await axios.post(`http://localhost:3200/data_kompetensi`, Kompetensi);
+    await axios.post(`http://localhost:3200/data_pencatatan`, Pencatatan);
     Swal.fire({
       imageUrl: `${Success}`,
       imageWidth: 100,
@@ -40,7 +41,7 @@ const AddForm = () => {
       title: "Berhasil di Input",
     });
   };
-  console.log("data", Kompetensi);
+  console.log("data", Pencatatan);
 
   return (
     <>
@@ -57,6 +58,17 @@ const AddForm = () => {
           <Form.Group>
             <Form.Label>Nama Kompetensi :</Form.Label>
             <Form.Control type="text" placeholder="Masukkan nama kompetensi" name="kompetensi" value={kompetensi} onChange={(e) => onInputChange(e)} required />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Kategori Kompetensi :</Form.Label>
+            <Form.Select aria-label="Pilih kategori kompetensi" name="kategori" value={kategori} onChange={(e) => onInputChange(e)} required>
+              <option value="Keuangan">Keuangan</option>
+              <option value="Kepegawaian">Kepegawaian</option>
+              <option value="Kepemimpinan">Kepemimpinan</option>
+              <option value="Teknologi Informasi">Teknologi Informasi</option>
+              <option value="Humas">Humas</option>
+              <option value="BMN">BMN</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tanggal Mulai :</Form.Label>
@@ -111,4 +123,4 @@ const AddForm = () => {
   );
 };
 
-export default AddForm;
+export default AddFormPencatatan;

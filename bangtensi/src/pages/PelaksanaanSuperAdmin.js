@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import BtnKompetensi from "./components/BtnKompetensi";
-import "./components/Searchbar.css";
+import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SidebarData } from "./components/SidebarData";
-import { MdDelete } from "react-icons/md";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
+import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
+import BtnEditPelaksanaan from "../components/BtnEditPelaksanaan";
 import axios from "axios";
-import BtnEdit from "./components/BtnEdit";
+import BtnDetailPelaksanaan from "../components/BtnDetailPelaksanaan";
 
-const Pengembangan = ({ hapusData }) => {
+const PelaksanaanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -18,12 +18,7 @@ const Pengembangan = ({ hapusData }) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = database.filter((value) => {
-      return (
-        value.nama.toLowerCase().includes(searchWord.toLowerCase()) ||
-        value.nip.toLowerCase().includes(searchWord.toLowerCase()) ||
-        value.kompetensi.toLowerCase().includes(searchWord.toLowerCase()) ||
-        value.penyelenggara.toLowerCase().includes(searchWord.toLowerCase())
-      );
+      return value.nama.toLowerCase().includes(searchWord.toLowerCase()) || value.penyelenggara.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -38,42 +33,32 @@ const Pengembangan = ({ hapusData }) => {
     setWordEntered("");
   };
 
+  const getdata = async () => {
+    await axios
+      .get(`http://localhost:3200/data_pelaksanaan`)
+      .then((result) => setsearchData(result.data))
+      .catch((err) => console.log(err));
+  };
   const getdataBase = async () => {
     await axios
-      .get(`http://localhost:3200/data_kompetensi`)
+      .get(`http://localhost:3200/data_pelaksanaan`)
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
 
-  /* const onDelete = async (id) => {
-    await fetch(`http://localhost:3200/data_kompetensi${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          return;
-        } else {
-          setdatabase(
-            database.filter((database) => {
-              return database.id !== id;
-            })
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };*/
-
-  const item = SidebarData;
-
+  const item = SidebarDataSuperAdmin;
+  const [searchData, setsearchData] = useState([]);
+  useEffect(() => {
+    getdata();
+  }, []);
   useEffect(() => {
     getdataBase();
   }, []);
 
+  console.log("searchdata", searchData);
   return (
     <>
-      <Navbar dataNav={item} />
+      <SidebarSuperAdmin dataNav={item} />
       <div className="search">
         <div className="searchInputs">
           <input type="text" placeholder="cari data...." value={wordEntered} onChange={handleFilter} />
@@ -81,17 +66,16 @@ const Pengembangan = ({ hapusData }) => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnKompetensi />
       <Table striped className="table">
         <thead>
           <tr>
             <th>No.</th>
-            <th>Nama Pegawai</th>
-            <th>NIP</th>
             <th>Nama Kompetensi</th>
-            <th>JP</th>
             <th>Penyelenggara</th>
-            <th>Sertifikat</th>
+            <th>JP</th>
+            <th>Nota Kegiatan</th>
+            <th>Detail</th>
+            <th>Status</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -101,10 +85,8 @@ const Pengembangan = ({ hapusData }) => {
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{item?.nama}</td>
-                  <td>{item?.nip}</td>
-                  <td>{item?.kompetensi}</td>
-                  <td>{item?.jp}</td>
                   <td>{item?.penyelenggara}</td>
+                  <td>{item?.jp}</td>
                   <td>
                     <Button variant="success">
                       <span className="lihat">Lihat</span>
@@ -112,7 +94,11 @@ const Pengembangan = ({ hapusData }) => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit idData={item?.id} />
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
+                    <BtnEditPelaksanaan idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -124,10 +110,8 @@ const Pengembangan = ({ hapusData }) => {
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{item?.nama}</td>
-                  <td>{item?.nip}</td>
-                  <td>{item?.kompetensi}</td>
-                  <td>{item?.jp}</td>
                   <td>{item?.penyelenggara}</td>
+                  <td>{item?.jp}</td>
                   <td>
                     <Button variant="success">
                       <span className="lihat">Lihat</span>
@@ -135,7 +119,11 @@ const Pengembangan = ({ hapusData }) => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit idData={item?.id} />
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
+                    <BtnEditPelaksanaan idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -149,4 +137,4 @@ const Pengembangan = ({ hapusData }) => {
   );
 };
 
-export default Pengembangan;
+export default PelaksanaanSuperAdmin;

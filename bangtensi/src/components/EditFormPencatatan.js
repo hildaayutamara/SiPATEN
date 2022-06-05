@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Cross from "./remove.png";
+import Cross from "../img/remove.png";
 import axios from "axios";
 import "sweetalert2/src/sweetalert2.scss";
-import Success from "./check.png";
-import "./App.css";
+import Success from "../img/check.png";
+import "../css/App.css";
 
-const EditForm = ({ id }) => {
-  const [Kompetensi, setKompetensi] = useState({
+const EditFormPencatatan = ({ id }) => {
+  const [Pencatatan, setPencatatan] = useState({
     nama: "",
     nip: "",
     kompetensi: "",
+    kategori: "",
     tgl_mulai: "",
     tgl_selesai: "",
     jp: "",
@@ -38,13 +39,13 @@ const EditForm = ({ id }) => {
 
   const getdata = async () => {
     await axios
-      .get(`http://localhost:3200/data_kompetensi/${id}`)
-      .then((result) => setKompetensi(result.data))
+      .get(`http://localhost:3200/data_pencatatan/${id}`)
+      .then((result) => setPencatatan(result.data))
       .catch((err) => console.log(err));
   };
   const submitedHandle = async (e) => {
     try {
-      let url = `http://localhost:3200/data_kompetensi//${id}`;
+      let url = `http://localhost:3200/data_pencatatan//${id}`;
       await axios.put(url, update);
       // window.location.reload();
       // console.log("data-update", update);
@@ -71,7 +72,7 @@ const EditForm = ({ id }) => {
       }
     }
   };
-  console.log("dataAwal", Kompetensi);
+  console.log("dataAwal", Pencatatan);
   console.log("id edit", id);
   // console.log("dataUpdate", update);
   // console.log("id edit", dataId);
@@ -81,20 +82,21 @@ const EditForm = ({ id }) => {
   useEffect(() => {
     setUpdate({
       ...update,
-      nama: Kompetensi?.nama,
-      nip: Kompetensi?.nip,
-      kompetensi: Kompetensi?.kompetensi,
-      tgl_mulai: Kompetensi?.tgl_mulai,
-      tgl_selesai: Kompetensi?.tgl_selesai,
-      jp: Kompetensi?.jp,
-      sebagai: Kompetensi?.sebagai,
-      penyelenggara: Kompetensi?.penyelenggara,
-      narasumber: Kompetensi?.narasumber,
-      tempat: Kompetensi?.tempat,
-      sertifikat: Kompetensi?.sertifikat,
+      nama: Pencatatan?.nama,
+      nip: Pencatatan?.nip,
+      kompetensi: Pencatatan?.kompetensi,
+      kategori: Pencatatan?.kategori,
+      tgl_mulai: Pencatatan?.tgl_mulai,
+      tgl_selesai: Pencatatan?.tgl_selesai,
+      jp: Pencatatan?.jp,
+      sebagai: Pencatatan?.sebagai,
+      penyelenggara: Pencatatan?.penyelenggara,
+      narasumber: Pencatatan?.narasumber,
+      tempat: Pencatatan?.tempat,
+      sertifikat: Pencatatan?.sertifikat,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Kompetensi]);
+  }, [Pencatatan]);
 
   return (
     <>
@@ -111,6 +113,17 @@ const EditForm = ({ id }) => {
           <Form.Group>
             <Form.Label>Nama Kompetensi :</Form.Label>
             <Form.Control type="text" placeholder="Masukkan nama kompetensi" name="kompetensi" value={update?.kompetensi} onChange={(e) => setUpdate({ ...update, kompetensi: e.target.value })} required />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Kategori Kompetensi :</Form.Label>
+            <Form.Select aria-label="Pilih kategori kompetensi" name="kategori" value={update?.kategori} onChange={(e) => setUpdate({ ...update, kategori: e.target.value })} required>
+              <option value="Keuangan">Keuangan</option>
+              <option value="Kepegawaian">Kepegawaian</option>
+              <option value="Kepemimpinan">Kepemimpinan</option>
+              <option value="Teknologi Informasi">Teknologi Informasi</option>
+              <option value="Humas">Humas</option>
+              <option value="BMN">BMN</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tanggal Mulai :</Form.Label>
@@ -165,4 +178,4 @@ const EditForm = ({ id }) => {
   );
 };
 
-export default EditForm;
+export default EditFormPencatatan;

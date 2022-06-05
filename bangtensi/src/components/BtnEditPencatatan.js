@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "./App.css";
+import "../css/App.css";
 import { MdModeEdit } from "react-icons/md";
-import EditForm from "./EditForm";
+import EditFormPencatatan from "./EditFormPencatatan";
 
 const BtnEdit = ({ idData }) => {
   const [show, setShow] = useState(false);
@@ -12,7 +12,7 @@ const BtnEdit = ({ idData }) => {
   };
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/pengembangan");
+    window.location.replace("/pencatatan-super-admin");
   };
   const [id, setid] = useState();
   console.log("ID BTN", idData);
@@ -27,7 +27,7 @@ const BtnEdit = ({ idData }) => {
         <Modal.Header closeButton>
           <Modal.Title>Edit Kompetensi</Modal.Title>
         </Modal.Header>
-        <EditForm id={id} />
+        <EditFormPencatatan id={id} />
       </Modal>
     </>
   );

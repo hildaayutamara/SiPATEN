@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "./App.css";
-import { IoIosCreate } from "react-icons/io";
-import AddFormPengajuan from "./AddFormPengajuan";
+import "../css/App.css";
+import { BsPlusLg } from "react-icons/bs";
+import AddFormPelaksanaan from "./AddFormPelaksanaan";
 
 const BtnPengajuan = () => {
   const [show, setShow] = useState(false);
+  const status = "Diproses";
   const handleShow = () => setShow(true);
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/pengajuan");
+    window.location.replace("/pelaksanaan-admin");
   };
 
   return (
     <>
-      <div className="btn-pengajuan">
+      <div className="btn-pelaksanaan">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
-          <IoIosCreate className="icon" />
-          <span>Buat Pengajuan</span>
+          <BsPlusLg className="icon" />
+          <span>Tambah Pengajuan</span>
         </Button>
       </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Pengajuan Kompetensi</Modal.Title>
+          <Modal.Title>Pengajuan Pelaksanaan Kompetensi</Modal.Title>
         </Modal.Header>
-        <AddFormPengajuan />
+        <AddFormPelaksanaan status={status} />
       </Modal>
     </>
   );

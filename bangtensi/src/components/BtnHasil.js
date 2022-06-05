@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "./App.css";
+import "../css/App.css";
 import { IoIosCreate } from "react-icons/io";
-import AddFormSertifikat from "./AddFormSertifikat";
+import AddFormHasil from "./AddFormHasil";
 
 //import { Viewer, Worker } from '@react-pdf-viewer/core';
 //import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
@@ -18,7 +18,7 @@ const BtnSertifikat = () => {
   const handleShow = () => setShow(true);
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/sertifikat");
+    window.location.replace("/hasil-admin");
   };
 
   /**const handleLihat=() => {
@@ -36,7 +36,7 @@ const BtnSertifikat = () => {
 
   return (
     <>
-      <div className="btn-sertifikat">
+      <div className="btn-hasil">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
           <IoIosCreate className="icon" />
           <span>Buat Sertifikat</span>
@@ -47,7 +47,7 @@ const BtnSertifikat = () => {
         <Modal.Header closeButton>
           <Modal.Title>Buat Sertifikat Baru</Modal.Title>
         </Modal.Header>
-        <AddFormSertifikat status={status} />
+        <AddFormHasil status={status} />
       </Modal>
     </>
   );

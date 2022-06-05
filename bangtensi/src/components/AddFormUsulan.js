@@ -3,12 +3,12 @@ import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "./App.css";
+import "../css/App.css";
 import Swal from "sweetalert2";
-import Success from "./check.png";
+import Success from "../img/check.png";
 
-const AddFormPengajuan = () => {
-  const [Pengajuan, setPengajuan] = useState({
+const AddFormUsulan = () => {
+  const [Usulan, setUsulan] = useState({
     id: uuidv4(),
     nama: "",
     penyelenggara: "",
@@ -19,17 +19,15 @@ const AddFormPengajuan = () => {
     tgl_selesai: "",
     nota: "",
     peserta: "",
-    materi: "",
-    status: "",
   });
 
   const onInputChange = (e) => {
-    setPengajuan({ ...Pengajuan, [e.target.name]: e.target.value });
+    setUsulan({ ...Usulan, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pengajuan;
+  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta } = Usulan;
   const handleSubmit = async () => {
-    await axios.post(`http://localhost:3200/data_pengajuan`, Pengajuan);
+    await axios.post(`http://localhost:3200/data_usulan`, Usulan);
     Swal.fire({
       imageUrl: `${Success}`,
       imageWidth: 100,
@@ -40,7 +38,7 @@ const AddFormPengajuan = () => {
       title: "Berhasil di Input",
     });
   };
-  console.log("data", Pengajuan);
+  console.log("data", Usulan);
 
   return (
     <>
@@ -82,10 +80,6 @@ const AddFormPengajuan = () => {
             <Form.Label>Peserta :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={peserta} onChange={(e) => onInputChange(e)} />
           </Form.Group>
-          <Form.Group className="form">
-            <Form.Label>Materi :</Form.Label>
-            <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={materi} onChange={(e) => onInputChange(e)} />
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -97,11 +91,11 @@ const AddFormPengajuan = () => {
             handleSubmit();
           }}
         >
-          Buat Pengajuan Kompetensi
+          Buat Usulan
         </Button>
       </Modal.Footer>
     </>
   );
 };
 
-export default AddFormPengajuan;
+export default AddFormUsulan;
