@@ -6,7 +6,10 @@ import AddForm from "./AddForm";
 
 const BtnKompetensi = () => {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const status = "Diproses";
+  const handleShow = (e) => {
+    setShow(true);
+  };
   const handleClose = () => setShow(false);
 
   return (
@@ -22,7 +25,7 @@ const BtnKompetensi = () => {
         <Modal.Header closeButton>
           <Modal.Title>Tambah Kompetensi</Modal.Title>
         </Modal.Header>
-        <AddForm />
+        <AddForm status={status} />
       </Modal>
     </>
   );

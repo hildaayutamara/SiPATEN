@@ -1,41 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import "./App.css";
 
+const AddForm = (statuss) => {
+  const [Kompetensi, setKompetensi] = useState({
+    id: uuidv4(),
+    nama: "",
+    nip: "",
+    kompetensi: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
+    jp: "",
+    sebagai: "",
+    penyelenggara: "",
+    narasumber: "",
+    tempat: "",
+    sertifikat: "",
+    status: "",
+  });
 
-const AddForm = () => {
-    const [Kompetensi, setKompetensi] = useState({
-        id: uuidv4(),
-        nama: "",
-        nip: "",
-        kompetensi: "",
-        tgl_mulai: "",
-        tgl_selesai: "",
-        jp: "",
-        sebagai: "",
-        penyelenggara: "",
-        narasumber: "",
-        tempat: "",
-        sertifikat: "",
-      });
-    
-      const onInputChange = (e) => {
-        setKompetensi({ ...Kompetensi, [e.target.name]: e.target.value });
-      };
-    
-      const { id, nama, nip, kompetensi, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Kompetensi;
-      const handleSubmit = async () => {
-        await axios.post(`http://localhost:3200/data_kompetensi`, Kompetensi);
-        alert("Sukses!");
-      };
-      console.log("data", Kompetensi);
+  useEffect(() => {
+    setKompetensi({ ...Kompetensi, status: statuss.status });
+  }, []);
 
+  const onInputChange = (e) => {
+    setKompetensi({ ...Kompetensi, [e.target.name]: e.target.value });
+  };
+
+  const { id, nama, nip, kompetensi, tgl_mulai, tgl_selesai, jp, sebagai, status, penyelenggara, narasumber, tempat, sertifikat } = Kompetensi;
+  const handleSubmit = async () => {
+    await axios.post(`http://localhost:3200/data_kompetensi`, Kompetensi);
+    alert("Sukses!");
+  };
+  console.log("data", Kompetensi);
+  console.log("props", statuss);
   return (
     <>
-        <Modal.Body>
+      <Modal.Body>
         <Form>
           <Form.Group>
             <Form.Label>Nama Pegawai :</Form.Label>
@@ -84,6 +88,10 @@ const AddForm = () => {
             <Form.Label>Sertifikat :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan Sertifikat" name="sertifikat" value={sertifikat} onChange={(e) => onInputChange(e)} />
           </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Status :</Form.Label>
+            <Form.Control type="text" placeholder="Masukkan Sertifikat" name="status" value={status} />
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -98,9 +106,8 @@ const AddForm = () => {
           Tambah Kompetensi Baru
         </Button>
       </Modal.Footer>
-  
     </>
-  )
-}
+  );
+};
 
-export default AddForm
+export default AddForm;

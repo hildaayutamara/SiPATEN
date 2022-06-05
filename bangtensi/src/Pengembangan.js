@@ -38,12 +38,6 @@ const Pengembangan = () => {
     setWordEntered("");
   };
 
-  const getdata = async () => {
-    await axios
-      .get(`http://localhost:3200/data_kompetensi`)
-      .then((result) => setsearchData(result.data))
-      .catch((err) => console.log(err));
-  };
   const getdataBase = async () => {
     await axios
       .get(`http://localhost:3200/data_kompetensi`)
@@ -52,15 +46,10 @@ const Pengembangan = () => {
   };
 
   const item = SidebarData;
-  const [searchData, setsearchData] = useState([]);
-  useEffect(() => {
-    getdata();
-  }, []);
+
   useEffect(() => {
     getdataBase();
   }, []);
-
-  console.log("searchdata", searchData);
 
   return (
     <>
@@ -103,7 +92,7 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit />
+                    <BtnEdit idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -126,7 +115,7 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit />
+                    <BtnEdit idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />

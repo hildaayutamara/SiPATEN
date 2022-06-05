@@ -1,26 +1,19 @@
-import React from 'react';
-import { Switch, Route } from "react-router-dom";
-import Pengembangan from './Pengembangan';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Pengembangan from "./Pengembangan";
 import Sertifikat from "./Sertifikat";
 import Pengajuan from "./Pengajuan";
 
 const Routing = () => {
   return (
     <>
-    <Switch>
-        <Route exact path="/">
-          <Pengembangan />
-        </Route>
-        <Route exact path="/sertifikat">
-          <Sertifikat />
-        </Route>
-        <Route exact path="/pengajuan">
-          <Pengajuan />
-        </Route>
-      </Switch>
-      
+      <Routes>
+        <Route exact path="/" element={<Pengembangan />} />
+        <Route exact path="/sertifikat" element={<Sertifikat />} />
+        <Route exact path="/pengajuan" element={<Pengajuan />} />
+      </Routes>
     </>
-  )
-}
+  );
+};
 
-export default Routing
+export default Routing;
