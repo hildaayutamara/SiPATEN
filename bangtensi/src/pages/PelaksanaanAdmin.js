@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import BtnSertifikat from "./components/BtnSertifikat";
-import "./components/Searchbar.css";
+import SidebarAdmin from "../components/SidebarAdmin";
+import BtnPelaksanaan from "../components/BtnPelaksanaan";
+import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SidebarData } from "./components/SidebarData";
+import { SidebarDataAdmin } from "../components/SidebarDataAdmin";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
+import BtnDetailPelaksanaan from "../components/BtnDetailPelaksanaan";
 
-const Sertifikat = () => {
+const PelaksanaanAdmin = () => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -33,18 +34,18 @@ const Sertifikat = () => {
 
   const getdata = async () => {
     await axios
-      .get(`http://localhost:3200/data_sertifikat`)
+      .get(`http://localhost:3200/data_pelaksanaan`)
       .then((result) => setsearchData(result.data))
       .catch((err) => console.log(err));
   };
   const getdataBase = async () => {
     await axios
-      .get(`http://localhost:3200/data_sertifikat`)
+      .get(`http://localhost:3200/data_pelaksanaan`)
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
 
-  const item = SidebarData;
+  const item = SidebarDataAdmin;
   const [searchData, setsearchData] = useState([]);
   useEffect(() => {
     getdata();
@@ -57,7 +58,7 @@ const Sertifikat = () => {
 
   return (
     <>
-      <Navbar dataNav={item} />
+      <SidebarAdmin dataNav={item} />
       <div className="search">
         <div className="searchInputs">
           <input type="text" placeholder="cari data...." value={wordEntered} onChange={handleFilter} />
@@ -65,7 +66,7 @@ const Sertifikat = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnSertifikat />
+      <BtnPelaksanaan />
       <Table striped className="table">
         <thead>
           <tr>
@@ -74,8 +75,8 @@ const Sertifikat = () => {
             <th>Penyelenggara</th>
             <th>JP</th>
             <th>Nota Kegiatan</th>
+            <th>Detail</th>
             <th>Status</th>
-            <th>Sertifikat</th>
           </tr>
         </thead>
         <tbody>
@@ -92,6 +93,10 @@ const Sertifikat = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
                 </tr>
               ))
             : database?.map((item, index) => (
@@ -106,6 +111,10 @@ const Sertifikat = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
                 </tr>
               ))}
         </tbody>
@@ -114,4 +123,4 @@ const Sertifikat = () => {
   );
 };
 
-export default Sertifikat;
+export default PelaksanaanAdmin;

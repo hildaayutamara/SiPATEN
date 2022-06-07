@@ -3,34 +3,42 @@ import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "./App.css";
+import "../css/App.css";
+import Swal from "sweetalert2";
+import Success from "../img/check.png";
 
-const AddFormPengajuan = () => {
-    const [Pengajuan, setPengajuan] = useState({
-        id: uuidv4(),
-        nama: "",
-        penyelenggara: "",
-        jp: "",
-        narasumber: "",
-        tempat: "",
-        tgl_mulai: "",
-        tgl_selesai: "",
-        nota: "",
-        peserta: "",
-        materi: "",
-        status: "",
-      });
-    
-      const onInputChange = (e) => {
-        setPengajuan({ ...Pengajuan, [e.target.name]: e.target.value });
-      };
-    
-      const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pengajuan;
-      const handleSubmit = async () => {
-        await axios.post(`http://localhost:3200/data_pengajuan`, Pengajuan);
-        alert("Sukses!");
-      };
-      console.log("data", Pengajuan);
+const AddFormUsulan = () => {
+  const [Usulan, setUsulan] = useState({
+    id: uuidv4(),
+    nama: "",
+    penyelenggara: "",
+    jp: "",
+    narasumber: "",
+    tempat: "",
+    tgl_mulai: "",
+    tgl_selesai: "",
+    nota: "",
+    peserta: "",
+  });
+
+  const onInputChange = (e) => {
+    setUsulan({ ...Usulan, [e.target.name]: e.target.value });
+  };
+
+  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta } = Usulan;
+  const handleSubmit = async () => {
+    await axios.post(`http://localhost:3200/data_usulan`, Usulan);
+    Swal.fire({
+      imageUrl: `${Success}`,
+      imageWidth: 100,
+      imageHeight: 100,
+      width: 450,
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#3BB54A",
+      title: "Berhasil di Input",
+    });
+  };
+  console.log("data", Usulan);
 
   return (
     <>
@@ -72,10 +80,6 @@ const AddFormPengajuan = () => {
             <Form.Label>Peserta :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={peserta} onChange={(e) => onInputChange(e)} />
           </Form.Group>
-          <Form.Group className="form">
-            <Form.Label>Materi :</Form.Label>
-            <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={materi} onChange={(e) => onInputChange(e)} />
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -87,12 +91,11 @@ const AddFormPengajuan = () => {
             handleSubmit();
           }}
         >
-          Buat Pengajuan Kompetensi
+          Buat Usulan
         </Button>
       </Modal.Footer>
-  
     </>
-  )
-}
+  );
+};
 
-export default AddFormPengajuan
+export default AddFormUsulan;

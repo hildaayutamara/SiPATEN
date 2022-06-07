@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import BtnKompetensi from "./components/BtnKompetensi";
-import "./components/Searchbar.css";
+import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
+import BtnPencatatan from "../components/BtnPencatatan";
+import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SidebarData } from "./components/SidebarData";
-import { MdDelete } from "react-icons/md";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import BtnEdit from "./components/BtnEdit";
+import BtnEditPencatatan from "../components/BtnEditPencatatan";
+import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
+import BtnDetailPencatatan from "../components/BtnDetailPencatatan";
 
-const Pengembangan = () => {
+const PencatatanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -40,12 +41,32 @@ const Pengembangan = () => {
 
   const getdataBase = async () => {
     await axios
-      .get(`http://localhost:3200/data_kompetensi`)
+      .get(`http://localhost:3200/data_pencatatan`)
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
 
-  const item = SidebarData;
+  /* const onDelete = async (id) => {
+    await fetch(`http://localhost:3200/data_kompetensi${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          return;
+        } else {
+          setdatabase(
+            database.filter((database) => {
+              return database.id !== id;
+            })
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };*/
+
+  const item = SidebarDataSuperAdmin;
 
   useEffect(() => {
     getdataBase();
@@ -53,7 +74,7 @@ const Pengembangan = () => {
 
   return (
     <>
-      <Navbar dataNav={item} />
+      <SidebarSuperAdmin dataNav={item} />
       <div className="search">
         <div className="searchInputs">
           <input type="text" placeholder="cari data...." value={wordEntered} onChange={handleFilter} />
@@ -61,7 +82,7 @@ const Pengembangan = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnKompetensi />
+      <BtnPencatatan />
       <Table striped className="table">
         <thead>
           <tr>
@@ -72,6 +93,7 @@ const Pengembangan = () => {
             <th>JP</th>
             <th>Penyelenggara</th>
             <th>Sertifikat</th>
+            <th>Detail</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -92,7 +114,10 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit idData={item?.id} />
+                    <BtnDetailPencatatan />
+                  </td>
+                  <td>
+                    <BtnEditPencatatan idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -115,7 +140,10 @@ const Pengembangan = () => {
                     </Button>
                   </td>
                   <td>
-                    <BtnEdit idData={item?.id} />
+                    <BtnDetailPencatatan />
+                  </td>
+                  <td>
+                    <BtnEditPencatatan idData={item?.id} />
 
                     <Button variant="danger" className="btn-delete">
                       <MdDelete />
@@ -129,4 +157,4 @@ const Pengembangan = () => {
   );
 };
 
-export default Pengembangan;
+export default PencatatanSuperAdmin;

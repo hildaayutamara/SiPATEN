@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import BtnPengajuan from "./components/BtnPengajuan";
-import "./components/Searchbar.css";
+import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SidebarData } from "./components/SidebarData";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
+import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
+import BtnEditPelaksanaan from "../components/BtnEditPelaksanaan";
 import axios from "axios";
+import BtnDetailPelaksanaan from "../components/BtnDetailPelaksanaan";
 
-const Pengajuan = () => {
+const PelaksanaanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -33,18 +35,18 @@ const Pengajuan = () => {
 
   const getdata = async () => {
     await axios
-      .get(`http://localhost:3200/data_pengajuan`)
+      .get(`http://localhost:3200/data_pelaksanaan`)
       .then((result) => setsearchData(result.data))
       .catch((err) => console.log(err));
   };
   const getdataBase = async () => {
     await axios
-      .get(`http://localhost:3200/data_pengajuan`)
+      .get(`http://localhost:3200/data_pelaksanaan`)
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
 
-  const item = SidebarData;
+  const item = SidebarDataSuperAdmin;
   const [searchData, setsearchData] = useState([]);
   useEffect(() => {
     getdata();
@@ -54,10 +56,9 @@ const Pengajuan = () => {
   }, []);
 
   console.log("searchdata", searchData);
-
   return (
     <>
-      <Navbar dataNav={item} />
+      <SidebarSuperAdmin dataNav={item} />
       <div className="search">
         <div className="searchInputs">
           <input type="text" placeholder="cari data...." value={wordEntered} onChange={handleFilter} />
@@ -65,7 +66,6 @@ const Pengajuan = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnPengajuan />
       <Table striped className="table">
         <thead>
           <tr>
@@ -74,7 +74,9 @@ const Pengajuan = () => {
             <th>Penyelenggara</th>
             <th>JP</th>
             <th>Nota Kegiatan</th>
+            <th>Detail</th>
             <th>Status</th>
+            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +93,17 @@ const Pengajuan = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
+                    <BtnEditPelaksanaan idData={item?.id} />
+
+                    <Button variant="danger" className="btn-delete">
+                      <MdDelete />
+                    </Button>
+                  </td>
                 </tr>
               ))
             : database?.map((item, index) => (
@@ -105,6 +118,17 @@ const Pengajuan = () => {
                       <FaEye />
                     </Button>
                   </td>
+                  <td>
+                    <BtnDetailPelaksanaan />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
+                    <BtnEditPelaksanaan idData={item?.id} />
+
+                    <Button variant="danger" className="btn-delete">
+                      <MdDelete />
+                    </Button>
+                  </td>
                 </tr>
               ))}
         </tbody>
@@ -113,4 +137,4 @@ const Pengajuan = () => {
   );
 };
 
-export default Pengajuan;
+export default PelaksanaanSuperAdmin;
