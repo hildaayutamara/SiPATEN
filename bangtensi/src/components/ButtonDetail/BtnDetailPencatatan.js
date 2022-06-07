@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { AiOutlineFileSearch } from "react-icons/ai";
-import DetailPencatatan from "./DetailPencatatan";
+import DetailPencatatan from "../../components/ModalDetail/DetailPencatatan";
 
-const BtnDetailUsulan = () => {
+const BtnDetailPencatatan = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = async () => {
@@ -19,7 +19,7 @@ const BtnDetailUsulan = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Detail Usulan</Modal.Title>
+          <Modal.Title>Detail Kompetensi</Modal.Title>
         </Modal.Header>
         <DetailPencatatan />
       </Modal>
@@ -27,4 +27,4 @@ const BtnDetailUsulan = () => {
   );
 };
 
-export default BtnDetailUsulan;
+export default BtnDetailPencatatan;

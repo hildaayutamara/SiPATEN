@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import SidebarAdmin from "../components/SidebarAdmin";
+import SidebarAdmin from "../components/Sidebar/SidebarAdmin";
 import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Table } from "react-bootstrap";
 import axios from "axios";
-import { SidebarDataAdmin } from "../components/SidebarDataAdmin";
+import { SidebarDataAdmin } from "../components/Sidebar/SidebarDataAdmin";
 
 const Rangkuman = () => {
   const [database, setdatabase] = useState([]);

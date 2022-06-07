@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { AiOutlineFileSearch } from "react-icons/ai";
-import DetailPelaksanaan from "./DetailPelaksanaan";
+import DetailHasil from "../../components/ModalDetail/DetailHasil";
 
-const BtnDetailPelaksanaan = () => {
+const BtnDetailHasil = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = async () => {
@@ -21,10 +21,10 @@ const BtnDetailPelaksanaan = () => {
         <Modal.Header closeButton>
           <Modal.Title>Detail Pelaksanaan</Modal.Title>
         </Modal.Header>
-        <DetailPelaksanaan />
+        <DetailHasil />
       </Modal>
     </>
   );
 };
 
-export default BtnDetailPelaksanaan;
+export default BtnDetailHasil;

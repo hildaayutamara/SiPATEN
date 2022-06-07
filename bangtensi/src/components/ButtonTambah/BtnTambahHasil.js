@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { IoIosCreate } from "react-icons/io";
-import AddFormHasil from "./AddFormHasil";
+import AddFormHasil from "../../components/FormAdd/AddFormHasil";
 
 //import { Viewer, Worker } from '@react-pdf-viewer/core';
 //import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
@@ -12,7 +12,7 @@ import AddFormHasil from "./AddFormHasil";
 
 //const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
-const BtnSertifikat = () => {
+const BtnTambahHasil = () => {
   const [show, setShow] = useState(false);
   const status = "Diproses";
   const handleShow = () => setShow(true);
@@ -53,4 +53,4 @@ const BtnSertifikat = () => {
   );
 };
 
-export default BtnSertifikat;
+export default BtnTambahHasil;

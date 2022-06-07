@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Cross from "../img/remove.png";
+import Cross from "../../img/remove.png";
 import axios from "axios";
 import "sweetalert2/src/sweetalert2.scss";
-import Success from "../img/check.png";
-import "../css/App.css";
+import Success from "../../img/check.png";
+import "../../css/App.css";
 
-const EditFormPelaksanaan = ({ id }) => {
-  const [Pelaksanaan, setPelaksanaan] = useState({
+const EditFormUsulan = ({ id }) => {
+  const [Usulan, setUsulan] = useState({
     nama: "",
     penyelenggara: "",
     jp: "",
@@ -19,8 +19,6 @@ const EditFormPelaksanaan = ({ id }) => {
     tgl_selesai: "",
     nota: "",
     peserta: "",
-    materi: "",
-    status: "",
   });
   const [update, setUpdate] = useState({
     nama: "",
@@ -32,19 +30,16 @@ const EditFormPelaksanaan = ({ id }) => {
     tgl_selesai: "",
     nota: "",
     peserta: "",
-    materi: "",
-    status: "",
   });
-
   const getdata = async () => {
     await axios
-      .get(`http://localhost:3200/data_pelaksanaan/${id}`)
-      .then((result) => setPelaksanaan(result.data))
+      .get(`http://localhost:3200/data_usulan/${id}`)
+      .then((result) => setUsulan(result.data))
       .catch((err) => console.log(err));
   };
   const submitedHandle = async (e) => {
     try {
-      let url = `http://localhost:3200/data_pelaksanaan//${id}`;
+      let url = `http://localhost:3200/data_usulan//${id}`;
       await axios.put(url, update);
       // window.location.reload();
       // console.log("data-update", update);
@@ -71,7 +66,7 @@ const EditFormPelaksanaan = ({ id }) => {
       }
     }
   };
-  console.log("dataAwal", Pelaksanaan);
+  console.log("dataAwal", Usulan);
   console.log("id edit", id);
   // console.log("dataUpdate", update);
   // console.log("id edit", dataId);
@@ -81,20 +76,18 @@ const EditFormPelaksanaan = ({ id }) => {
   useEffect(() => {
     setUpdate({
       ...update,
-      nama: Pelaksanaan?.nama,
-      penyelenggara: Pelaksanaan?.penyelenggara,
-      jp: Pelaksanaan?.jp,
-      narasumber: Pelaksanaan?.narasumber,
-      tempat: Pelaksanaan?.tempat,
-      tgl_mulai: Pelaksanaan?.tgl_mulai,
-      tgl_selesai: Pelaksanaan?.tgl_selesai,
-      nota: Pelaksanaan?.nota,
-      peserta: Pelaksanaan?.peserta,
-      materi: Pelaksanaan?.materi,
-      status: Pelaksanaan?.status,
+      nama: Usulan?.nama,
+      penyelenggara: Usulan?.penyelenggara,
+      jp: Usulan?.jp,
+      narasumber: Usulan?.narasumber,
+      tempat: Usulan?.tempat,
+      tgl_mulai: Usulan?.tgl_mulai,
+      tgl_selesai: Usulan?.tgl_selesai,
+      nota: Usulan?.nota,
+      peserta: Usulan?.peserta,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Pelaksanaan]);
+  }, [Usulan]);
   return (
     <>
       <Modal.Body>
@@ -109,7 +102,7 @@ const EditFormPelaksanaan = ({ id }) => {
           </Form.Group>
           <Form.Group>
             <Form.Label>JP :</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan jumlah JP" name="jp" value={update?.jp} onChange={(e) => setUpdate({ ...update, jp: e.target.value })} required />
+            <Form.Control type="number" placeholder="Masukkan jumlah JP" name="jp" value={update?.jp} onChange={(e) => setUpdate({ ...update, jp: e.target.value })} required />
           </Form.Group>
           <Form.Group>
             <Form.Label>Narasumber :</Form.Label>
@@ -135,17 +128,6 @@ const EditFormPelaksanaan = ({ id }) => {
             <Form.Label>Peserta :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={update?.peserta} onChange={(e) => setUpdate({ ...update, peserta: e.target.value })} />
           </Form.Group>
-          <Form.Group className="form">
-            <Form.Label>Materi :</Form.Label>
-            <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={update?.materi} onChange={(e) => setUpdate({ ...update, materi: e.target.value })} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Status :</Form.Label>
-            <Form.Select aria-label="Masukkan status" name="status" value={update?.status} onChange={(e) => setUpdate({ ...update, status: e.target.value })} required>
-              <option value="Diterima">Diterima</option>
-              <option value="Ditolak">Ditolak</option>
-            </Form.Select>
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -157,11 +139,11 @@ const EditFormPelaksanaan = ({ id }) => {
             submitedHandle();
           }}
         >
-          Edit data Kompetensi
+          Edit data Usulan
         </Button>
       </Modal.Footer>
     </>
   );
 };
 
-export default EditFormPelaksanaan;
+export default EditFormUsulan;

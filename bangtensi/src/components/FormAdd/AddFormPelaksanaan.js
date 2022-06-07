@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "../css/App.css";
+import "../../css/App.css";
 import Swal from "sweetalert2";
-import Success from "../img/check.png";
+import Success from "../../img/check.png";
 
-const AddFormUsulan = () => {
-  const [Usulan, setUsulan] = useState({
+const AddFormPelaksanaan = (statuss) => {
+  const [Pelaksanaan, setPelaksanaan] = useState({
     id: uuidv4(),
     nama: "",
     penyelenggara: "",
@@ -19,15 +19,21 @@ const AddFormUsulan = () => {
     tgl_selesai: "",
     nota: "",
     peserta: "",
+    materi: "",
+    status: "",
   });
 
+  useEffect(() => {
+    setPelaksanaan({ ...Pelaksanaan, status: statuss.status });
+  }, []);
+
   const onInputChange = (e) => {
-    setUsulan({ ...Usulan, [e.target.name]: e.target.value });
+    setPelaksanaan({ ...Pelaksanaan, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta } = Usulan;
+  const { nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pelaksanaan;
   const handleSubmit = async () => {
-    await axios.post(`http://localhost:3200/data_usulan`, Usulan);
+    await axios.post(`http://localhost:3200/data_pelaksanaan`, Pelaksanaan);
     Swal.fire({
       imageUrl: `${Success}`,
       imageWidth: 100,
@@ -38,7 +44,7 @@ const AddFormUsulan = () => {
       title: "Berhasil di Input",
     });
   };
-  console.log("data", Usulan);
+  console.log("data", Pelaksanaan);
 
   return (
     <>
@@ -80,6 +86,14 @@ const AddFormUsulan = () => {
             <Form.Label>Peserta :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={peserta} onChange={(e) => onInputChange(e)} />
           </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Materi :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={materi} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Status :</Form.Label>
+            <Form.Control type="text" name="status" value={status} />
+          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -91,11 +105,11 @@ const AddFormUsulan = () => {
             handleSubmit();
           }}
         >
-          Buat Usulan
+          Buat Pengajuan Pelaksaan
         </Button>
       </Modal.Footer>
     </>
   );
 };
 
-export default AddFormUsulan;
+export default AddFormPelaksanaan;

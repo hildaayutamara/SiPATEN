@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { MdModeEdit } from "react-icons/md";
-import EditFormPencatatan from "./EditFormPencatatan";
+import EditFormUsulan from "../../components/FormEdit/EditFormUsulan";
 
-const BtnEdit = ({ idData }) => {
+const BtnEditUsulan = ({ idData }) => {
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(true);
@@ -12,11 +12,10 @@ const BtnEdit = ({ idData }) => {
   };
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/pencatatan-super-admin");
+    window.location.replace("/usulan-super-admin");
   };
   const [id, setid] = useState();
   console.log("ID BTN", idData);
-
   return (
     <>
       <Button onClick={handleShow} variant="warning" data-toggle="modal">
@@ -25,12 +24,12 @@ const BtnEdit = ({ idData }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Kompetensi</Modal.Title>
+          <Modal.Title>Edit Usulan Kepesertaan</Modal.Title>
         </Modal.Header>
-        <EditFormPencatatan id={id} />
+        <EditFormUsulan id={id} />
       </Modal>
     </>
   );
 };
 
-export default BtnEdit;
+export default BtnEditUsulan;

@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { BsPlusLg } from "react-icons/bs";
-import AddFormUsulan from "./AddFormUsulan";
+import AddFormPencatatan from "../../components/FormAdd/AddFormPencatatan";
 
-const BtnUsulan = () => {
+const BtnTambahPencatatan = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/usulan-admin");
+    window.location.replace("/pencatatan-admin");
   };
+
   return (
     <>
-      <div className="btn-usulan">
+      <div className="btn-pencatatan">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
           <BsPlusLg className="icon" />
-          <span>Tambah Usulan</span>
+          <span>Tambah Pencatatan</span>
         </Button>
       </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Pengajuan Usulan Kepesertaan</Modal.Title>
+          <Modal.Title>Tambah Kompetensi</Modal.Title>
         </Modal.Header>
-        <AddFormUsulan />
+        <AddFormPencatatan />
       </Modal>
     </>
   );
 };
 
-export default BtnUsulan;
+export default BtnTambahPencatatan;

@@ -3,9 +3,9 @@ import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "../css/App.css";
+import "../../css/App.css";
 import Swal from "sweetalert2";
-import Success from "../img/check.png";
+import Success from "../../img/check.png";
 
 const AddFormPencatatan = () => {
   const [Pencatatan, setPencatatan] = useState({
@@ -28,7 +28,7 @@ const AddFormPencatatan = () => {
     setPencatatan({ ...Pencatatan, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, nip, kompetensi, kategori, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Pencatatan;
+  const { nama, nip, kompetensi, kategori, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Pencatatan;
   const handleSubmit = async () => {
     await axios.post(`http://localhost:3200/data_pencatatan`, Pencatatan);
     Swal.fire({

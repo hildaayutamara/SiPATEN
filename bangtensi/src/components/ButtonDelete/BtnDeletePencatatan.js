@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Success from "../img/check.png";
+import Success from "../../img/check.png";
 
 const BtnDeletePencatatan = ({ idData }) => {
   const handleDelete = async () => {

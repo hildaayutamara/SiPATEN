@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import "../css/App.css";
+import "../../css/App.css";
 import { IconContext } from "react-icons";
-import corpu1 from "../img/corpu1.png";
-import man from "../img/man.png";
+import corpu1 from "../../img/corpu1.png";
+import man from "../../img/man.png";
 
-const SidebarSuperAdmin = (item) => {
+const SidebarAdmin = (item) => {
   const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -54,4 +54,4 @@ const SidebarSuperAdmin = (item) => {
   );
 };
 
-export default SidebarSuperAdmin;
+export default SidebarAdmin;

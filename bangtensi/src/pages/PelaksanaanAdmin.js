@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import SidebarAdmin from "../components/SidebarAdmin";
-import BtnPelaksanaan from "../components/BtnPelaksanaan";
+import SidebarAdmin from "../components/Sidebar/SidebarAdmin";
+import BtnTambahPelaksanaan from "../components/ButtonTambah/BtnTambahPelaksanaan";
 import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SidebarDataAdmin } from "../components/SidebarDataAdmin";
+import { SidebarDataAdmin } from "../components/Sidebar/SidebarDataAdmin";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
-import BtnDetailPelaksanaan from "../components/BtnDetailPelaksanaan";
+import BtnDetailPelaksanaan from "../components/ButtonDetail/BtnDetailPelaksanaan";
 
 const PelaksanaanAdmin = () => {
   const [database, setdatabase] = useState([]);
@@ -66,7 +66,7 @@ const PelaksanaanAdmin = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnPelaksanaan />
+      <BtnTambahPelaksanaan />
       <Table striped className="table">
         <thead>
           <tr>

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
-import BtnPencatatan from "../components/BtnPencatatan";
+import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
 import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
-import BtnEditPencatatan from "../components/BtnEditPencatatan";
-import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
-import BtnDetailPencatatan from "../components/BtnDetailPencatatan";
-import BtnDeletePencatatan from "../components/BtnDeletePencatatan";
+import BtnEditPencatatan from "../components/ButtonEdit/BtnEditPencatatan";
+import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
+import BtnDetailPencatatan from "../components/ButtonDetail/BtnDetailPencatatan";
+import BtnDeletePencatatan from "../components/ButtonDelete/BtnDeletePencatatan";
 
 const PencatatanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
@@ -46,26 +45,6 @@ const PencatatanSuperAdmin = () => {
       .catch((err) => console.log(err));
   };
 
-  /* const onDelete = async (id) => {
-    await fetch(`http://localhost:3200/data_kompetensi${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          return;
-        } else {
-          setdatabase(
-            database.filter((database) => {
-              return database.id !== id;
-            })
-          );
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };*/
-
   const item = SidebarDataSuperAdmin;
 
   useEffect(() => {
@@ -82,7 +61,6 @@ const PencatatanSuperAdmin = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnPencatatan />
       <Table striped className="table">
         <thead>
           <tr>
