@@ -6,10 +6,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Success from "../../img/check.png";
 
-const BtnDeletePencatatan = ({ idData }) => {
+const BtnDeleteHasil = ({ idData }) => {
   const handleDelete = async () => {
     await axios
-      .delete(`http://localhost:3200/data_pencatatan/${idData}`)
+      .delete(`http://localhost:3200/data_hasil/${idData}`)
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
     await Swal.fire({
@@ -24,7 +24,6 @@ const BtnDeletePencatatan = ({ idData }) => {
   };
 
   console.log("Id Delete Btn", idData);
-
   return (
     <>
       <Button onClick={handleDelete} variant="danger" data-toggle="modal" className="btn-delete">
@@ -34,4 +33,4 @@ const BtnDeletePencatatan = ({ idData }) => {
   );
 };
 
-export default BtnDeletePencatatan;
+export default BtnDeleteHasil;

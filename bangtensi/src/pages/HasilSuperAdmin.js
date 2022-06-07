@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
+import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
 import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
-import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
-import BtnEditUsulan from "../components/ButtonEdit/BtnEditUsulan";
 import axios from "axios";
-import BtnDetailUsulan from "../components/ButtonDetail/BtnDetailUsulan";
-import BtnDeleteUsulan from "../components/ButtonDelete/BtnDeleteUsulan";
+import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
+import BtnDetailHasil from "../components/ButtonDetail/BtnDetailHasil";
+import BtnEditHasil from "../components/ButtonEdit/BtnEditHasil";
+import BtnDeleteHasil from "../components/ButtonDelete/BtnDeleteHasil";
 
-const UsulanSuperAdmin = () => {
+const HasilSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -35,13 +35,13 @@ const UsulanSuperAdmin = () => {
 
   const getdata = async () => {
     await axios
-      .get(`http://localhost:3200/data_usulan`)
+      .get(`http://localhost:3200/data_hasil`)
       .then((result) => setsearchData(result.data))
       .catch((err) => console.log(err));
   };
   const getdataBase = async () => {
     await axios
-      .get(`http://localhost:3200/data_usulan`)
+      .get(`http://localhost:3200/data_hasil`)
       .then((result) => setdatabase(result.data))
       .catch((err) => console.log(err));
   };
@@ -62,7 +62,6 @@ const UsulanSuperAdmin = () => {
       <div className="search">
         <div className="searchInputs">
           <input type="text" placeholder="cari data...." value={wordEntered} onChange={handleFilter} />
-
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
@@ -74,8 +73,9 @@ const UsulanSuperAdmin = () => {
             <th>Penyelenggara</th>
             <th>JP</th>
             <th>Nota Kegiatan</th>
-            <th>Peserta</th>
             <th>Detail</th>
+            <th>Status</th>
+            <th>Sertifikat</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -94,18 +94,19 @@ const UsulanSuperAdmin = () => {
                     </Button>
                   </td>
                   <td>
+                    <BtnDetailHasil />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
                     <Button variant="success">
                       <span className="lihat">Lihat</span>
                       <FaEye />
                     </Button>
                   </td>
                   <td>
-                    <BtnDetailUsulan />
-                  </td>
-                  <td>
-                    <BtnEditUsulan idData={item?.id} />
+                    <BtnEditHasil idData={item?.id} />
 
-                    <BtnDeleteUsulan idData={item?.id} />
+                    <BtnDeleteHasil idData={item?.id} />
                   </td>
                 </tr>
               ))
@@ -122,18 +123,19 @@ const UsulanSuperAdmin = () => {
                     </Button>
                   </td>
                   <td>
+                    <BtnDetailHasil />
+                  </td>
+                  <td>{item?.status}</td>
+                  <td>
                     <Button variant="success">
                       <span className="lihat">Lihat</span>
                       <FaEye />
                     </Button>
                   </td>
                   <td>
-                    <BtnDetailUsulan />
-                  </td>
-                  <td>
-                    <BtnEditUsulan idData={item?.id} />
+                    <BtnEditHasil idData={item?.id} />
 
-                    <BtnDeleteUsulan idData={item?.id} />
+                    <BtnDeleteHasil idData={item?.id} />
                   </td>
                 </tr>
               ))}
@@ -143,4 +145,4 @@ const UsulanSuperAdmin = () => {
   );
 };
 
-export default UsulanSuperAdmin;
+export default HasilSuperAdmin;
