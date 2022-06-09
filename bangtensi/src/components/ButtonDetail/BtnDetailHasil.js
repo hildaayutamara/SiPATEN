@@ -19,7 +19,7 @@ const BtnDetailHasil = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Detail Pelaksanaan</Modal.Title>
+          <Modal.Title>Detail Hasil</Modal.Title>
         </Modal.Header>
         <DetailHasil />
       </Modal>

@@ -11,6 +11,8 @@ import BerandaSuperAdmin from "../pages/BerandaSuperAdmin";
 import PencatatanSuperAdmin from "../pages/PencatatanSuperAdmin";
 import PelaksanaanSuperAdmin from "../pages/PelaksanaanSuperAdmin";
 import UsulanSuperAdmin from "../pages/UsulanSuperAdmin";
+import HasilSuperAdmin from "../pages/HasilSuperAdmin";
+import RangkumanSuperAdmin from "../pages/RangkumanSuperAdmin";
 
 const Routing = () => {
   return (
@@ -48,6 +50,12 @@ const Routing = () => {
         </Route>
         <Route exact path="/usulan-super-admin">
           <UsulanSuperAdmin />
+        </Route>
+        <Route exact path="/hasil-super-admin">
+          <HasilSuperAdmin />
+        </Route>
+        <Route exact path="/rangkuman-super-admin">
+          <RangkumanSuperAdmin />
         </Route>
       </Switch>
     </>

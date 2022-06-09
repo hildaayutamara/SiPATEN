@@ -3,12 +3,12 @@ import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
 import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
 import BtnEditPelaksanaan from "../components/ButtonEdit/BtnEditPelaksanaan";
 import axios from "axios";
 import BtnDetailPelaksanaan from "../components/ButtonDetail/BtnDetailPelaksanaan";
+import BtnDeletePelaksanaan from "../components/ButtonDelete/BtnDeletePelaksanaan";
 
 const PelaksanaanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);
@@ -100,9 +100,7 @@ const PelaksanaanSuperAdmin = () => {
                   <td>
                     <BtnEditPelaksanaan idData={item?.id} />
 
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
+                    <BtnDeletePelaksanaan idData={item?.id} />
                   </td>
                 </tr>
               ))
@@ -125,9 +123,7 @@ const PelaksanaanSuperAdmin = () => {
                   <td>
                     <BtnEditPelaksanaan idData={item?.id} />
 
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
+                    <BtnDeletePelaksanaan idData={item?.id} />
                   </td>
                 </tr>
               ))}
