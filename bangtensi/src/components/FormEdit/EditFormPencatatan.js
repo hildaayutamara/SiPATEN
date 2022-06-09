@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Cross from "../img/remove.png";
+import Cross from "../../img/remove.png";
 import axios from "axios";
 import "sweetalert2/src/sweetalert2.scss";
-import Success from "../img/check.png";
-import "../css/App.css";
+import Success from "../../img/check.png";
+import "../../css/App.css";
 
 const EditFormPencatatan = ({ id }) => {
   const [Pencatatan, setPencatatan] = useState({

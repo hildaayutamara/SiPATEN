@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import "../css/App.css";
+import "../../css/App.css";
 import Swal from "sweetalert2";
-import Success from "../img/check.png";
+import Success from "../../img/check.png";
 
-const AddFormPelaksanaan = (statuss) => {
-  const [Pelaksanaan, setPelaksanaan] = useState({
+const AddFormHasil = (statuss) => {
+  const [Hasil, setHasil] = useState({
     id: uuidv4(),
     nama: "",
     penyelenggara: "",
@@ -18,22 +18,24 @@ const AddFormPelaksanaan = (statuss) => {
     tgl_mulai: "",
     tgl_selesai: "",
     nota: "",
-    peserta: "",
+    absen: "",
     materi: "",
+    dokumentasi: "",
     status: "",
+    file: "",
   });
 
   useEffect(() => {
-    setPelaksanaan({ ...Pelaksanaan, status: statuss.status });
+    setHasil({ ...Hasil, status: statuss.status });
   }, []);
 
   const onInputChange = (e) => {
-    setPelaksanaan({ ...Pelaksanaan, [e.target.name]: e.target.value });
+    setHasil({ ...Hasil, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, peserta, materi, status } = Pelaksanaan;
+  const { nama, penyelenggara, jp, narasumber, tempat, tgl_mulai, tgl_selesai, nota, absen, materi, dokumentasi, status, file } = Hasil;
   const handleSubmit = async () => {
-    await axios.post(`http://localhost:3200/data_pelaksanaan`, Pelaksanaan);
+    await axios.post(`http://localhost:3200/data_hasil`, Hasil);
     Swal.fire({
       imageUrl: `${Success}`,
       imageWidth: 100,
@@ -44,13 +46,13 @@ const AddFormPelaksanaan = (statuss) => {
       title: "Berhasil di Input",
     });
   };
-  console.log("data", Pelaksanaan);
+  console.log("data", Hasil);
 
   return (
     <>
       <Modal.Body>
         <Form>
-          <Form.Group className="form">
+          <Form.Group>
             <Form.Label>Nama Kompetensi :</Form.Label>
             <Form.Control type="text" placeholder="Masukkan nama kompetensi" name="nama" value={nama} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
@@ -60,35 +62,39 @@ const AddFormPelaksanaan = (statuss) => {
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>JP :</Form.Label>
-            <Form.Control type="number" placeholder="Masukkan jumlah JP" name="jp" value={jp} onChange={(e) => onInputChange(e)} />
+            <Form.Control type="number" placeholder="Masukkan jumlah JP" name="jp" value={jp} onChange={(e) => onInputChange(e)} required />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Narasumber :</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan nama narasumber" name="narasumber" value={narasumber} onChange={(e) => onInputChange(e)} required />
+            <Form.Control type="text" placeholder="Masukkan nama narasumber" name="narasumber" value={narasumber} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tempat :</Form.Label>
-            <Form.Control type="text" placeholder="Masukkan tempat pelaksanaan kompetensi" name="tempat" value={tempat} onChange={(e) => onInputChange(e)} required />
+            <Form.Control type="text" placeholder="Masukkan tempat pelaksanaan kompetensi" name="tempat" value={tempat} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tanggal Mulai :</Form.Label>
-            <Form.Control type="date" placeholder="Masukkan tanggal mulai kompetensi" name="tgl_mulai" value={tgl_mulai} onChange={(e) => onInputChange(e)} />
+            <Form.Control type="date" placeholder="Masukkan tanggal mulai pelaksanaan kompetensi" name="tgl_mulai" value={tgl_mulai} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Tanggal Selesai :</Form.Label>
-            <Form.Control type="date" placeholder="Masukkan tanggal selesai kompetensi" name="tgl_selesai" value={tgl_selesai} onChange={(e) => onInputChange(e)} />
+            <Form.Control type="date" placeholder="Masukkan tanggal selesai pelaksanaan kompetensi" name="tgl_selesai" value={tgl_selesai} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Nota Kegiatan :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file nota kegiatan" name="nota" value={nota} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
-            <Form.Label>Peserta :</Form.Label>
-            <Form.Control type="file" placeholder="Masukkan file daftar peserta" name="peserta" value={peserta} onChange={(e) => onInputChange(e)} />
+            <Form.Label>Absensi :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file absensi peserta" name="absen" value={absen} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Materi :</Form.Label>
             <Form.Control type="file" placeholder="Masukkan file materi kompetensi" name="materi" value={materi} onChange={(e) => onInputChange(e)} />
+          </Form.Group>
+          <Form.Group className="form">
+            <Form.Label>Dokumentasi :</Form.Label>
+            <Form.Control type="file" placeholder="Masukkan file dokumentasi kegiatan kompetensi" name="dokumentasi" value={dokumentasi} onChange={(e) => onInputChange(e)} />
           </Form.Group>
           <Form.Group className="form">
             <Form.Label>Status :</Form.Label>
@@ -105,11 +111,11 @@ const AddFormPelaksanaan = (statuss) => {
             handleSubmit();
           }}
         >
-          Buat Pengajuan Pelaksaan
+          Buat Sertifikat Baru
         </Button>
       </Modal.Footer>
     </>
   );
 };
 
-export default AddFormPelaksanaan;
+export default AddFormHasil;

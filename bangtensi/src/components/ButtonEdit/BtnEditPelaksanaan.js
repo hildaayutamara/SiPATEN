@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { MdModeEdit } from "react-icons/md";
-import EditFormPelaksanaan from "./EditFormPelaksanaan";
+import EditFormPelaksanaan from "../../components/FormEdit/EditFormPelaksanaan";
 
 const BtnEditPelaksanaan = ({ idData }) => {
   const [show, setShow] = useState(false);

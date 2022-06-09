@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Cross from "../img/OopsCross.svg";
+import Cross from "../../img/OopsCross.svg";
 import axios from "axios";
-<<<<<<< HEAD:bangtensi/src/components/EditForm.js
 import "sweetalert2/src/sweetalert2.scss";
-import Success from "../img/saveLogo.png";
-import "./App.css";
+import Success from "../../img/saveLogo.png";
+import "../../css/App.css";
+import { v4 as uuidv4 } from "uuid";
 
-const EditForm = ({ id }) => {
+const AddFormPencatatan = ({ id }) => {
   const [Kompetensi, setKompetensi] = useState({
     nama: "",
     nip: "",
@@ -23,16 +23,11 @@ const EditForm = ({ id }) => {
     tempat: "",
     sertifikat: "",
   });
-  const [update, setUpdate] = useState({
-=======
-import "../css/App.css";
-import Swal from "sweetalert2";
-import Success from "../img/check.png";
+  const [update, setUpdate] = useState({});
 
-const AddFormPencatatan = () => {
   const [Pencatatan, setPencatatan] = useState({
     id: uuidv4(),
->>>>>>> 167353dc4b7077612e472b52b1dae019b7a082c5:bangtensi/src/components/AddFormPencatatan.js
+
     nama: "",
     nip: "",
     kompetensi: "",
@@ -47,7 +42,6 @@ const AddFormPencatatan = () => {
     sertifikat: "",
   });
 
-<<<<<<< HEAD:bangtensi/src/components/EditForm.js
   const getdata = async () => {
     await axios
       .get(`http://localhost:3200/data_kompetensi/${id}`)
@@ -105,12 +99,12 @@ const AddFormPencatatan = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Kompetensi]);
-=======
+
   const onInputChange = (e) => {
     setPencatatan({ ...Pencatatan, [e.target.name]: e.target.value });
   };
 
-  const { id, nama, nip, kompetensi, kategori, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Pencatatan;
+  const { nama, nip, kompetensi, kategori, tgl_mulai, tgl_selesai, jp, sebagai, penyelenggara, narasumber, tempat, sertifikat } = Pencatatan;
   const handleSubmit = async () => {
     await axios.post(`http://localhost:3200/data_pencatatan`, Pencatatan);
     Swal.fire({
@@ -125,7 +119,6 @@ const AddFormPencatatan = () => {
   };
   console.log("data", Pencatatan);
 
->>>>>>> 167353dc4b7077612e472b52b1dae019b7a082c5:bangtensi/src/components/AddFormPencatatan.js
   return (
     <>
       <Modal.Body>

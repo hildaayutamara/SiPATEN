@@ -4,11 +4,11 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
-import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
-import BtnEditPelaksanaan from "../components/BtnEditPelaksanaan";
+import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
+import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
+import BtnEditPelaksanaan from "../components/ButtonEdit/BtnEditPelaksanaan";
 import axios from "axios";
-import BtnDetailPelaksanaan from "../components/BtnDetailPelaksanaan";
+import BtnDetailPelaksanaan from "../components/ButtonDetail/BtnDetailPelaksanaan";
 
 const PelaksanaanSuperAdmin = () => {
   const [database, setdatabase] = useState([]);

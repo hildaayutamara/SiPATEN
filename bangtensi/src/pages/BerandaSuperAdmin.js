@@ -1,6 +1,6 @@
 import React from "react";
-import { SidebarDataSuperAdmin } from "../components/SidebarDataSuperAdmin";
-import SidebarSuperAdmin from "../components/SidebarSuperAdmin";
+import { SidebarDataSuperAdmin } from "../components/Sidebar/SidebarDataSuperAdmin";
+import SidebarSuperAdmin from "../components/Sidebar/SidebarSuperAdmin";
 
 const BerandaSuperAdmin = () => {
   const item = SidebarDataSuperAdmin;

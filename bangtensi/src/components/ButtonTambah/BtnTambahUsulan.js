@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import "../css/App.css";
+import "../../css/App.css";
 import { BsPlusLg } from "react-icons/bs";
-import AddFormPelaksanaan from "./AddFormPelaksanaan";
+import AddFormUsulan from "../../components/FormAdd/AddFormUsulan";
 
-const BtnPengajuan = () => {
+const BtnTambahUsulan = () => {
   const [show, setShow] = useState(false);
-  const status = "Diproses";
   const handleShow = () => setShow(true);
   const handleClose = async () => {
     setShow(false);
-    window.location.replace("/pelaksanaan-admin");
+    window.location.replace("/usulan-admin");
   };
-
   return (
     <>
-      <div className="btn-pelaksanaan">
+      <div className="btn-usulan">
         <Button onClick={handleShow} className="btn btn-primary" data-toggle="modal">
           <BsPlusLg className="icon" />
-          <span>Tambah Pengajuan</span>
+          <span>Tambah Usulan</span>
         </Button>
       </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Pengajuan Pelaksanaan Kompetensi</Modal.Title>
+          <Modal.Title>Pengajuan Usulan Kepesertaan</Modal.Title>
         </Modal.Header>
-        <AddFormPelaksanaan status={status} />
+        <AddFormUsulan />
       </Modal>
     </>
   );
 };
 
-export default BtnPengajuan;
+export default BtnTambahUsulan;

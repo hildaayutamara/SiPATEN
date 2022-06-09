@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import SidebarAdmin from "../components/SidebarAdmin";
-import BtnPencatatan from "../components/BtnPencatatan";
+import SidebarAdmin from "../components/Sidebar/SidebarAdmin";
+import BtnTambahPencatatan from "../components/ButtonTambah/BtnTambahPencatatan";
 import "../css/Searchbar.css";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { Button, Table } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
-import { SidebarDataAdmin } from "../components/SidebarDataAdmin";
-import BtnDetailPencatatan from "../components/BtnDetailPencatatan";
+import { SidebarDataAdmin } from "../components/Sidebar/SidebarDataAdmin";
+import BtnDetailPencatatan from "../components/ButtonDetail/BtnDetailPencatatan";
 
 const PencatatanAdmin = () => {
   const [database, setdatabase] = useState([]);
@@ -45,11 +45,6 @@ const PencatatanAdmin = () => {
   };
   const item = SidebarDataAdmin;
 
-<<<<<<< HEAD:bangtensi/src/Pengembangan.js
-  const item = SidebarData;
-
-=======
->>>>>>> 167353dc4b7077612e472b52b1dae019b7a082c5:bangtensi/src/pages/PencatatanAdmin.js
   useEffect(() => {
     getdataBase();
   }, []);
@@ -64,7 +59,7 @@ const PencatatanAdmin = () => {
           <div className="searchIcon">{filteredData.length === 0 ? <AiOutlineSearch /> : <AiOutlineClose id="clearBtn" onClick={clearInput} />}</div>
         </div>
       </div>
-      <BtnPencatatan />
+      <BtnTambahPencatatan />
       <Table striped className="table">
         <thead>
           <tr>
@@ -95,15 +90,7 @@ const PencatatanAdmin = () => {
                     </Button>
                   </td>
                   <td>
-<<<<<<< HEAD:bangtensi/src/Pengembangan.js
-                    <BtnEdit idData={item?.id} />
-
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
-=======
                     <BtnDetailPencatatan />
->>>>>>> 167353dc4b7077612e472b52b1dae019b7a082c5:bangtensi/src/pages/PencatatanAdmin.js
                   </td>
                 </tr>
               ))
@@ -122,15 +109,7 @@ const PencatatanAdmin = () => {
                     </Button>
                   </td>
                   <td>
-<<<<<<< HEAD:bangtensi/src/Pengembangan.js
-                    <BtnEdit idData={item?.id} />
-
-                    <Button variant="danger" className="btn-delete">
-                      <MdDelete />
-                    </Button>
-=======
                     <BtnDetailPencatatan />
->>>>>>> 167353dc4b7077612e472b52b1dae019b7a082c5:bangtensi/src/pages/PencatatanAdmin.js
                   </td>
                 </tr>
               ))}
