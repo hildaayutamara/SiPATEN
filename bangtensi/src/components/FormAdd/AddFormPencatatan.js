@@ -50,8 +50,8 @@ const AddFormPencatatan = ({ id }) => {
   };
   const submitedHandle = async (e) => {
     try {
-      let url = `http://localhost:3200/data_kompetensi//${id}`;
-      await axios.put(url, update);
+      let url = `http://localhost:3200/data_kompetensi/`;
+      await axios.post(url, Kompetensi);
       // window.location.reload();
       // console.log("data-update", update);
       Swal.fire({
@@ -192,7 +192,7 @@ const AddFormPencatatan = ({ id }) => {
             submitedHandle();
           }}
         >
-          Edit data Kompetensi
+          Tambah data Kompetensi
         </Button>
       </Modal.Footer>
     </>
